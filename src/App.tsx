@@ -8,7 +8,7 @@ import Shipping from "./pages/Shipping/Shipping";
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Routes>
         <Route path="/" element={<Shipping />} />
         <Route path="/login" element={<Login />} />
