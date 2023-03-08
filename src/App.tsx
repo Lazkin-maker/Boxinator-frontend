@@ -6,8 +6,12 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Shipping from "./pages/Shipping/Shipping";
 
+
+
+
 function App() {
   return (
+
     <div className="App">
       <Routes>
         <Route path="/" element={<Shipping />} />
