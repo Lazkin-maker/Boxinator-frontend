@@ -4,6 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { initialize } from './keycloak';
+import Navbar from "./components/navbar/Navbar";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,13 +20,25 @@ link.href = 'https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css'
 // append link element to head tag
 document.head.appendChild(link);
 
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
-);
+initialize()
+  .then(() => {
+    root.render(
+      <React.StrictMode>
+        <BrowserRouter>
+        <Navbar />
+          <App />
+        </BrowserRouter>
+      </React.StrictMode>
+    );
+  })
+  .catch(() => {
+    root.render(
+      <React.StrictMode>
+        <p>Could Not Connect To Keycloak.</p>
+      </React.StrictMode>
+    );
+  });
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

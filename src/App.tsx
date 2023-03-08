@@ -7,20 +7,17 @@ import Register from "./pages/Register/Register";
 import Shipping from "./pages/Shipping/Shipping";
 
 
-
-
 function App() {
   return (
-
-    <div className="App">
+    <main className="App">
       <Routes>
-        <Route path="/" element={<Shipping />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login/>} />
+        <Route path="/shipping" element={<Shipping />} />
         <Route path="/register" element={<Register />} />
         <Route path="/account" element={<Account />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
-    </div>
+    </main>
   );
 }
 

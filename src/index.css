@@ -11,3 +11,48 @@ body {
 .heading-font {
     font-family: 'Bebas Neue', cursive;
 }
+
+code,
+pre {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+    white-space: normal;
+    word-wrap: break-word;
+    background-color: lightgrey;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    display: block;
+  }
+  
+  .container {
+    margin: 0 auto;
+    max-width: 76rem;
+    padding: 0 2rem;
+  }
+  
+  nav {
+    background-color: #333333;
+    color: white;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+  }
+  
+  li {
+    padding: 1rem;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
