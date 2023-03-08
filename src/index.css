@@ -11,3 +11,8 @@ body {
 .heading-font {
     font-family: 'Bebas Neue', cursive;
 }
+
+.bg-color-indigo {
+    opacity: 1;
+    background-color: #4F46E5;
+}
