@@ -20,7 +20,7 @@ function ShipmentList({ shipments }: Props) {
         }
 
         setPaginatedItems(shipments.slice(0, shipmentsPerPage))
-    }, [])
+    }, [shipments])
 
     const handlePrev = () => {
         if (currentPage === 1) return;
@@ -42,7 +42,7 @@ function ShipmentList({ shipments }: Props) {
 
         // increment current page
         setCurrentPage(currentPage + 1);
-        
+
         // get next items
         const start = currentPage * shipmentsPerPage;
         const end = (currentPage + 1) * shipmentsPerPage;
@@ -72,12 +72,12 @@ function ShipmentList({ shipments }: Props) {
                             ))}
                         </tbody>
                     </table>
-                    
-                    {shipments.length > 4 && (
-                        <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-                            <span className="text-xs xs:text-sm text-gray-900">
-                                Page {currentPage} of {totalPageCount}
-                            </span>
+
+                    <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+                        <span className="text-xs xs:text-sm text-gray-900">
+                            Page {currentPage} of {totalPageCount}
+                        </span>
+                        {shipments.length > 4 && (
                             <div className="inline-flex mt-2 xs:mt-0">
                                 <button
                                     onClick={handlePrev}
@@ -93,8 +93,8 @@ function ShipmentList({ shipments }: Props) {
                                     Next
                                 </button>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

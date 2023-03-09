@@ -1,9 +1,7 @@
 import ShipmentList from "../../components/ShipmentList/ShipmentList";
 import data from "./dummy.json";
 
-type Props = {}
-
-function Shipping({ }: Props) {
+function Shipping() {
   const activeShipments = data.shipments.filter(shipment => ["CREATED", "RECEIVED", "INTRANSIT"].includes(shipment.status));
   const completedShipments = data.shipments.filter(shipment => shipment.status === "COMPLETED");
   return (
