@@ -1,17 +1,8 @@
-import React from 'react'
+import Shipment from '../../models/shipment'
 import StatusDisplay from '../StatusDisplay/StatusDisplay'
 
 type Props = {
-    shipment: {
-        id: string,
-        recipient: string,
-        weight: number,
-        boxColor: string,
-        email: string | null,
-        status: string,
-        destination: string,
-        price: number,
-    },
+    shipment: Shipment,
 }
 
 function ShipmentListItem({ shipment }: Props) {

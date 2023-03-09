@@ -50,6 +50,57 @@
             "email": null,
             "weight": 2.0,
             "price": 320
+        },
+        {
+            "id": "1",
+            "recipient": "John Doe",
+            "destination": "US",
+            "boxColor": "red",
+            "status": "CREATED",
+            "email": null,
+            "weight": 1.5,
+            "price": 300
+
+        },
+        {
+            "id": "2",
+            "recipient": "Jane Doe",
+            "destination": "Germany",
+            "boxColor": "blue",
+            "status": "RECEIVED",
+            "email": null,
+            "weight": 2.2,
+            "price": 230
+        },
+        {
+            "id": "3",
+            "recipient": "Tim Briggs",
+            "destination": "UK",
+            "boxColor": "green",
+            "status": "INTRANSIT",
+            "email": "timboy@briggs.com",
+            "weight": 3.1,
+            "price": 260
+        },
+        {
+            "id": "4",
+            "recipient": "Oliver Smith",
+            "destination": "France",
+            "boxColor": "yellow",
+            "status": "COMPLETED",
+            "email": null,
+            "weight": 1.2,
+            "price": 250
+        },
+        {
+            "id": "5",
+            "recipient": "Jack Jones",
+            "destination": "Mexico",
+            "boxColor": "red",
+            "status": "CANCELLED",
+            "email": null,
+            "weight": 2.0,
+            "price": 320
         }
     ]
 }
