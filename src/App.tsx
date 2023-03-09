@@ -8,7 +8,7 @@ import Shipping from "./pages/Shipping/Shipping";
 
 function App() {
   return (
-    <div className="App">
+    <div className="bg-slate-900 text-white">
       <Routes>
         <Route path="/" element={<Shipping />} />
         <Route path="/login" element={<Login />} />
