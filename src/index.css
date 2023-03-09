@@ -16,3 +16,8 @@ body {
     opacity: 1;
     background-color: #4F46E5;
 }
+
+.bg-color-black{
+    opacity: 1;
+    background-color: #111827;
+}
