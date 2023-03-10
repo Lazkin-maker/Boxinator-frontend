@@ -1,3 +1,5 @@
+import { useState } from "react"
+import formatCurrency from "../../shared/formatCurrency"
 import ModalBackdrop from "../ModalBackdrop/ModalBackdrop"
 import NewShipmentForm from "../NewShipmentForm/NewShipmentForm"
 
@@ -6,8 +8,7 @@ type Props = {
 }
 
 function NewShipmentModal({ closeModal }: Props) {
-
-
+  const [price, setPrice] = useState(0);
 
   return (
     <>
@@ -15,11 +16,22 @@ function NewShipmentModal({ closeModal }: Props) {
         
         <h1 className="text-xl text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Send a package</h1>
         
-        <NewShipmentForm />
+        <NewShipmentForm price={price} setPrice={setPrice} />
+
+        <hr className="mt-6 mb-4" />
+
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-gray-800 text-xl font-bold">Total</h2>
+          <p className="text-gray-800 text-lg">{formatCurrency(price)} <span className="text-sm text-gray-500">incl. tax</span></p>
+        </div>
 
         <div className="flex items-center justify-start w-full">
-          <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-700 transition duration-150 ease-in-out hover:bg-violet-600 bg-violet-700 rounded text-white px-8 py-2 text-sm" form="shipment-form">Submit</button>
-          <button className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onClick={closeModal}>Cancel</button>
+          <button form="shipment-form" className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-700 transition duration-150 ease-in-out hover:bg-violet-600 bg-violet-700 rounded text-white px-8 py-2 text-sm">
+            Submit
+          </button>
+          <button onClick={closeModal} className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">
+            Cancel
+          </button>
         </div>
 
         <button className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" onClick={closeModal}>

@@ -1,3 +1,4 @@
+import Status from '../../enums/status'
 import Shipment from '../../models/shipment'
 import StatusDisplay from '../StatusDisplay/StatusDisplay'
 

@@ -1,16 +1,24 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import Countries from "../../enums/countries";
 import WeightTiers from "../../enums/weightTiers";
 import { SliderPicker } from 'react-color';
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { schema, FormData } from "./formSchema";
+import countryMultipliers from "../../shared/countryMultipliers";
+import calculateShipping from "../../shared/calculateShipping";
 
-function NewShipmentForm() {
-    const [currentColor, setCurrentColor] = useState("#8bc34a")
-    const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormData>({
+type Props = {
+    price: number,
+    setPrice: Dispatch<SetStateAction<number>>
+}
+
+function NewShipmentForm({ price, setPrice }: Props) {
+    const [currentColor, setCurrentColor] = useState("#8bc34a") // default color
+    const { register, watch, setValue, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     });
+
+    const watchedFields = watch(["weight", "destination"]);
 
     const onSubmit = (data: FormData) => console.log(data);
 
@@ -19,8 +27,16 @@ function NewShipmentForm() {
         setValue("boxColor", color);
     }
 
-    return (
-        <form id="shipment-form" onSubmit={handleSubmit(onSubmit)} className="max-w-xl mt-0 mb-6 mx-auto flex flex-col">
+    useEffect(() => {
+        const [weight = 1, destination = 'Sweden'] = watchedFields;
+        const multiplier = countryMultipliers.get(destination) || 1;
+        const price = calculateShipping(weight, multiplier);
+        setPrice(price);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [watchedFields])
+
+    return price ? (
+        <form id="shipment-form" onSubmit={handleSubmit(onSubmit)} className="max-w-xl mt-0 mx-auto flex flex-col">
             
             {/* recipient input */}
             <label htmlFor="recipient" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
@@ -44,8 +60,8 @@ function NewShipmentForm() {
                 Destination Country<span className="text-red-600 font-normal">* {errors.destination?.message}</span>
             </label>
             <select {...register("destination")} className="mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
-                {/* map over the countries enum and create an option for each one */}
-                {(Object.keys(Countries) as (keyof typeof Countries)[]).map((country) => (
+                {/* iterate over the countries in multiplier map and create an option for each one */}
+                {Array.from(countryMultipliers.keys()).map((country) => (
                     <option key={country} value={country}>{country}</option>
                 ))}
             </select>
@@ -57,7 +73,7 @@ function NewShipmentForm() {
             <SliderPicker color={currentColor} onChange={(color) => handleColorChange(color.hex)} className="mt-2" />
 
         </form>
-    )
+    ) : null
 }
 
 export default NewShipmentForm
