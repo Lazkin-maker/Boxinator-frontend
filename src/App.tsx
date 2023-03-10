@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Account from "./pages/Account/Account";
 import Admin from "./pages/Admin/Admin";
+import EditShipmentStatus from "./pages/Admin/EditShipmentStatus";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Shipping from "./pages/Shipping/Shipping";
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/account" element={<Account />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/editshipmentstatus/:shipmentId" element={<EditShipmentStatus />} />
       </Routes>
     </div>
   );
