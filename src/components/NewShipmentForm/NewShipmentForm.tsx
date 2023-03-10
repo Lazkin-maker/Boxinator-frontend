@@ -9,10 +9,12 @@ import calculateShipping from "../../shared/calculateShipping";
 
 type Props = {
     price: number,
-    setPrice: Dispatch<SetStateAction<number>>
+    setPrice: Dispatch<SetStateAction<number>>,
+    setShowConfirmationModal: Dispatch<SetStateAction<boolean>>,
+    closeModal: () => void
 }
 
-function NewShipmentForm({ price, setPrice }: Props) {
+function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal }: Props) {
     const [currentColor, setCurrentColor] = useState("#8bc34a") // default color
     const { register, watch, setValue, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
@@ -20,7 +22,11 @@ function NewShipmentForm({ price, setPrice }: Props) {
 
     const watchedFields = watch(["weight", "destination"]);
 
-    const onSubmit = (data: FormData) => console.log(data);
+    const onSubmit = (data: FormData) => {
+        console.log(data);
+        setShowConfirmationModal(true);
+        closeModal();
+    }
 
     const handleColorChange = (color: string) => {
         setCurrentColor(color);

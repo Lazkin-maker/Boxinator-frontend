@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import formatCurrency from "../../shared/formatCurrency"
 import ModalBackdrop from "../ModalBackdrop/ModalBackdrop"
 import NewShipmentForm from "../NewShipmentForm/NewShipmentForm"
 
 type Props = {
-  closeModal: () => void
+  closeModal: () => void,
+  setShowConfirmationModal: Dispatch<SetStateAction<boolean>>
 }
 
-function NewShipmentModal({ closeModal }: Props) {
+function NewShipmentModal({ closeModal, setShowConfirmationModal }: Props) {
   const [price, setPrice] = useState(0);
 
   return (
@@ -16,7 +17,7 @@ function NewShipmentModal({ closeModal }: Props) {
         
         <h1 className="text-xl text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Send a package</h1>
         
-        <NewShipmentForm price={price} setPrice={setPrice} />
+        <NewShipmentForm price={price} setPrice={setPrice} setShowConfirmationModal={setShowConfirmationModal} closeModal={closeModal} />
 
         <hr className="mt-6 mb-4" />
 

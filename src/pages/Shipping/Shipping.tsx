@@ -1,11 +1,14 @@
 import { useState } from "react";
+import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import NewShipmentModal from "../../components/NewShipmentModal/NewShipmentModal";
 import ShipmentList from "../../components/ShipmentList/ShipmentList";
 import data from "./dummy.json";
 
 function Shipping() {
   const [showNewShipmentModal, setShowNewShipmentModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
+  // These will be replaced by API calls
   const activeShipments = data.shipments.filter(shipment => ["CREATED", "RECEIVED", "INTRANSIT"].includes(shipment.status));
   const completedShipments = data.shipments.filter(shipment => shipment.status === "COMPLETED");
 
@@ -31,7 +34,13 @@ function Shipping() {
       </div>
 
       {showNewShipmentModal && (
-        <NewShipmentModal closeModal={() => setShowNewShipmentModal(false)} />
+        <NewShipmentModal
+          setShowConfirmationModal={setShowConfirmationModal}
+          closeModal={() => setShowNewShipmentModal(false)} />
+      )}
+
+      {showConfirmationModal && (
+        <ConfirmationModal closeModal={() => setShowConfirmationModal(false)} />
       )}
     </>
   )
