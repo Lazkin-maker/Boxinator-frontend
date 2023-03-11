@@ -1,7 +1,21 @@
 import { Link } from "react-router-dom";
 import keycloak from "../../keycloak";
+import React, { useState, useEffect } from "react";
+
+
 
 function Navbar() {
+  const [isAuthenticated, setIsAuthenticated] = useState(keycloak.authenticated);
+
+
+
+
+  const handleLogout = () => {
+    keycloak.logout({ redirectUri: window.location.origin + "/"});
+    localStorage.removeItem('keycloakToken');
+    setIsAuthenticated(false);
+    
+  };
 
   return (
     <nav>
@@ -14,17 +28,26 @@ function Navbar() {
             <li>
               <Link to="/account">Account</Link>
             </li>
-            {keycloak.authenticated && (
+            {isAuthenticated && (
               <li>
                 <Link to="/shipping">Shipping</Link>
               </li>
             )}
           </ul>
-
-          {keycloak.authenticated && (
+          {!isAuthenticated && (
             <ul>
               <li>
-                <button onClick={() => keycloak.logout()}>Logout</button>
+                <button onClick={() => {
+                  keycloak.login({ redirectUri: window.location.origin + "/shipping" })                
+                }}>Login</button>
+              </li>
+            </ul>
+          )}
+
+          {isAuthenticated && (
+            <ul>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
               </li>
             </ul>
           )}
