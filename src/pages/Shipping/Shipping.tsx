@@ -3,12 +3,14 @@ import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationMo
 import NewShipmentModal from "../../components/NewShipmentModal/NewShipmentModal";
 import ShipmentList from "../../components/ShipmentList/ShipmentList";
 import data from "./dummy.json";
+import keycloak from "../../keycloak";
+
 
 function Shipping() {
   const [showNewShipmentModal, setShowNewShipmentModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('keycloakToken'));
-  
+
 
   useEffect(() => {
     setIsLoggedIn(!!localStorage.getItem('keycloakToken'));
@@ -20,7 +22,14 @@ function Shipping() {
 
   return (
     <>
+      {keycloak.tokenParsed && (
+        <div className=" rounded-lg p-4 mb-4 text-left">
+          Logged as: <span className="font-bold">{keycloak.tokenParsed.preferred_username}</span>
+        </div>
+      )}
+
       <div className="container max-w-4xl mx-auto px-4 pt-20">
+
 
         <div className="max-w-2xl mx-auto text-center mb-8">
           <h1 className="text-3xl font-bold mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam labore aut mollitia!</h1>

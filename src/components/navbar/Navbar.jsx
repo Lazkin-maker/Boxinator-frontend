@@ -11,10 +11,10 @@ function Navbar() {
 
 
   const handleLogout = () => {
-    keycloak.logout({ redirectUri: window.location.origin + "/"});
+    keycloak.logout({ redirectUri: window.location.origin + "/" });
     localStorage.removeItem('keycloakToken');
     setIsAuthenticated(false);
-    
+
   };
 
   return (
@@ -43,7 +43,7 @@ function Navbar() {
             <ul>
               <li>
                 <button onClick={() => {
-                  keycloak.login({ redirectUri: window.location.origin + "/shipping" })                
+                  keycloak.login({ redirectUri: window.location.origin + "/shipping" })
                 }}>Login</button>
               </li>
             </ul>
