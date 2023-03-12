@@ -49,7 +49,7 @@ function App() {
 
 
   return (
-    <main className="App">
+    <main className="min-h-screen bg-slate-900 text-white">
      
       <Routes>
         <Route path="/" element={<Login />} />
