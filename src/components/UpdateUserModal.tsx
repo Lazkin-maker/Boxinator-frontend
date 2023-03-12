@@ -25,6 +25,7 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
           type="date"
           value={dateOfBirth}
           onChange={(e) => setDateOfBirth(e.target.value)}
+          style={{ color: 'black' }}
         />
       </div>
 
@@ -35,6 +36,8 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
           type="text"
           value={countryOfResidence}
           onChange={(e) => setCountryOfResidence(e.target.value)}
+          style={{ color: 'black' }}
+
         />
       </div>
 
@@ -45,6 +48,8 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
           type="text"
           value={zipCode}
           onChange={(e) => setZipCode(e.target.value)}
+          style={{ color: 'black' }}
+
         />
       </div>
 
@@ -55,6 +60,8 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
           type="text"
           value={contactNumber}
           onChange={(e) => setContactNumber(e.target.value)}
+          style={{ color: 'black' }}
+
         />
       </div>
 

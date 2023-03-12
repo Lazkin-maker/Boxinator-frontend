@@ -33,6 +33,11 @@ function Navbar() {
                 <Link to="/shipping">Shipping</Link>
               </li>
             )}
+            {isAuthenticated && (
+              <li>
+                <Link to="/admin">Admin</Link>
+              </li>
+            )}
           </ul>
           {!isAuthenticated && (
             <ul>

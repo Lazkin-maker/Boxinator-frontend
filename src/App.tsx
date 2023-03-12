@@ -12,17 +12,7 @@ import { ROLES } from './const/roles'
 import Navbar from './components/navbar/Navbar';
 
 function App() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // useEffect(()=>{
-  //   const token = localStorage.getItem("keycloakToken");
-  //   if (token) {
-  //     setIsLoggedIn(true);
-  //   } else {
-  //     setIsLoggedIn(false);
-  //   }
-  // }, []);
-
+ 
   const [isAuthenticated, setIsAuthenticated] = useState(keycloak.authenticated);
 
   useEffect(() => {
@@ -52,7 +42,7 @@ function App() {
     <main className="min-h-screen bg-slate-900 text-white">
      
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Shipping />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/account"
           element={
@@ -61,7 +51,12 @@ function App() {
             </KeycloakRoute>
           }
         />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={
+        <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
+            <Admin />
+        </KeycloakRoute>   
+        }  
+        />
       </Routes>
     </main>
   );
