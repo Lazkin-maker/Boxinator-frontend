@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import NewShipmentModal from "../../components/NewShipmentModal/NewShipmentModal";
 import ShipmentList from "../../components/ShipmentList/ShipmentList";
@@ -7,6 +7,12 @@ import data from "./dummy.json";
 function Shipping() {
   const [showNewShipmentModal, setShowNewShipmentModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('keycloakToken'));
+  
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem('keycloakToken'));
+  }, [localStorage.getItem('keycloakToken')]);
 
   // These will be replaced by API calls
   const activeShipments = data.shipments.filter(shipment => ["CREATED", "RECEIVED", "INTRANSIT"].includes(shipment.status));
@@ -25,11 +31,19 @@ function Shipping() {
           </button>
         </div>
 
-        <h2 className="text-2xl font-bold">Active Shipments</h2>
-        <ShipmentList shipments={activeShipments} />
+        {isLoggedIn ? (
+          <div>
+            <h2 className="text-2xl font-bold">Active Shipments</h2>
+            <ShipmentList shipments={activeShipments} />
 
-        <h2 className="text-2xl font-bold">Completed Shipments</h2>
-        <ShipmentList shipments={completedShipments} />
+            <h2 className="text-2xl font-bold">Completed Shipments</h2>
+            <ShipmentList shipments={completedShipments} />
+
+
+          </div>
+        ) : (
+          <p>please login to view active shipments</p>
+        )}
 
       </div>
 
