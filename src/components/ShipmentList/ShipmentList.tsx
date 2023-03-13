@@ -4,10 +4,11 @@ import ShipmentListHeader from '../ShipmentListHeader/ShipmentListHeader';
 import ShipmentListItem from '../ShipmentListItem/ShipmentListItem';
 
 type Props = {
-    shipments: Shipment[]
+    shipments: Shipment[],
+    setCurrentShipment: (shipment: Shipment) => void,
 }
 
-function ShipmentList({ shipments }: Props) {
+function ShipmentList({ shipments, setCurrentShipment }: Props) {
     const [paginatedItems, setPaginatedItems] = useState<Shipment[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const shipmentsPerPage = 4;
@@ -62,7 +63,7 @@ function ShipmentList({ shipments }: Props) {
                         </thead>
                         <tbody>
                             {paginatedItems.map((shipment, index) => (
-                                <ShipmentListItem shipment={shipment} key={index} />
+                                <ShipmentListItem shipment={shipment} key={index} showDetails={() => setCurrentShipment(shipment)} />
                             ))}
                         </tbody>
                     </table>

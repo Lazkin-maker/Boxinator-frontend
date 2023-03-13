@@ -3,9 +3,15 @@ import StatusDisplay from '../StatusDisplay/StatusDisplay'
 
 type Props = {
     shipment: Shipment,
+    showDetails: () => void,
 }
 
-function ShipmentListItem({ shipment }: Props) {
+function ShipmentListItem({ shipment, showDetails }: Props) {
+    
+    const handleShowDetails = () => {
+        showDetails();
+    }
+
     return (
         <tr>
             <td className="pl-4 pr-2 md:px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -38,7 +44,7 @@ function ShipmentListItem({ shipment }: Props) {
 
             {/* Shipment details modal only visible on mobile devices */}
             <td className="pl-2 pr-4 md:px-5 py-5 border-b border-gray-200 bg-white text-sm sm:hidden">
-                <button className="text-indigo-600 hover:text-indigo-900 underline">Details</button>
+                <button onClick={handleShowDetails} className="text-indigo-600 hover:text-indigo-900 underline">Details</button>
             </td>
         </tr>
     )
