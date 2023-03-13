@@ -8,9 +8,7 @@ interface MyProps {
 
 const AdminNav = ({ component:  Component }:MyProps) => {
     const [menu, setMenu] = useState(false);
-
-  const showMenu = () => {
-    
+    const showMenu = () => {    
     menu ? setMenu(false) : setMenu(true);
   }
     return (
