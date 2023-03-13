@@ -1,4 +1,4 @@
-import React, { useState, useEffect,ComponentType } from "react";
+import React, { useState, useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import AdminNav from "./components/Admin/AdminNavbar/AdminNav";
@@ -9,7 +9,6 @@ import Shipping from "./pages/Shipping/Shipping";
 import keycloak from "./keycloak";
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from './const/roles'
-import Navbar from './components/navbar/Navbar';
 
 function App() {
  

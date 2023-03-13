@@ -1,6 +1,4 @@
 import { ComponentType, useState } from "react";
-import Admin from "../../../pages/Admin/Admin";
-import EditShipmentStatus from "../../../pages/Admin/EditShipmentStatus";
 import AdminMobilNavbar from "./AdminMobilNavbar";
 import AdminSidebar from "./AdminSidebar";
 
@@ -12,6 +10,7 @@ const AdminNav = ({ component:  Component }:MyProps) => {
     const [menu, setMenu] = useState(false);
 
   const showMenu = () => {
+    
     menu ? setMenu(false) : setMenu(true);
   }
     return (
