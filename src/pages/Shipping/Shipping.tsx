@@ -14,7 +14,7 @@ function Shipping() {
 
   return (
     <>
-      <div className="container max-w-4xl mx-auto px-4 pt-20">
+      <div className="container max-w-4xl mx-auto px-3 sm:px-4 pt-20">
 
         <div className="max-w-2xl mx-auto text-center mb-8">
           <h1 className="text-3xl font-bold mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam labore aut mollitia!</h1>
