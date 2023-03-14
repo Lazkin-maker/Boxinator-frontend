@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 
 
 
-function EditSatusMobil({shipment}:any) {
+function EditSatusMobil({shipment, setShowConfirmationModal}:any) {
   
   const statusOption = ["CREATED", "RECEIVED", "INTRANSIT","COMPLETED"];
 
@@ -23,7 +23,11 @@ function EditSatusMobil({shipment}:any) {
 
   useEffect(() => {
     if(shipment.status !== selectedOption.status)
-      console.log(JSON.stringify(selectedOption))
+    {
+        console.log(JSON.stringify(selectedOption))
+        setShowConfirmationModal(true);
+    }
+      
   }, [selectedOption]);
   return (
 
@@ -60,6 +64,7 @@ function EditSatusMobil({shipment}:any) {
             </button>
         </div>
     </div>
+    
    
   )
 }

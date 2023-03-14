@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 
 
 
-function EditSatus({shipment}:any) {
+function EditSatus({shipment, setShowConfirmationModal}:any) {
   
   const statusOption = ["CREATED", "RECEIVED", "INTRANSIT","COMPLETED"];
 
@@ -18,12 +18,15 @@ function EditSatus({shipment}:any) {
 
   const onSubmit = (data:any) => {
     const updatedStatus = { ...selectedOption, status: data.selectedStatus};
-    setSelectedOption(updatedStatus);
+    setSelectedOption(updatedStatus); 
   };
 
   useEffect(() => {
     if(shipment.status !== selectedOption.status)
+    {
       console.log(JSON.stringify(selectedOption))
+      setShowConfirmationModal(true);
+    }
   }, [selectedOption]);
   return (
     <tr>

@@ -1,7 +1,9 @@
 import{ useParams } from 'react-router-dom'
+import{useState} from 'react'
 import EditSatus from '../../components/Admin/StatusEdit/EditStatus';
 import EditSatusMobil from '../../components/Admin/StatusEdit/EditStatusMobil';
 import data from "./Admindummy.json";
+import EditConfirmationModal from '../../components/Admin/StatusEdit/EditConfirmationModal';
 
 
 
@@ -10,6 +12,7 @@ const EditShipmentStatus = () => {
   const { shipmentId } = useParams();
   const shipmentObj = data.shipments.find(packageObj => packageObj.id === shipmentId);
   const headings = ["ID", "Recipient", "Destination", "Price", "Status"];
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   return (
 
@@ -28,10 +31,13 @@ const EditShipmentStatus = () => {
               </tr>
             </thead>
             <tbody>
-              <EditSatus shipment={shipmentObj} />
+              <EditSatus shipment={shipmentObj} setShowConfirmationModal={setShowConfirmationModal}/>
             </tbody>
           </table>
-          <EditSatusMobil  shipment={shipmentObj} />
+          <EditSatusMobil  shipment={shipmentObj} setShowConfirmationModal={setShowConfirmationModal}/>
+          {showConfirmationModal && (
+              <EditConfirmationModal closeModal={() => setShowConfirmationModal(false)} />
+            )}
         </div>
       </div>
     </div>
