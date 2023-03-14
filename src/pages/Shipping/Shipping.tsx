@@ -1,17 +1,12 @@
 import { useState } from "react";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import NewShipmentModal from "../../components/NewShipmentModal/NewShipmentModal";
-import ShipmentDetailsModal from "../../components/ShipmentDetailsModal/ShipmentDetailsModal";
 import ShipmentList from "../../components/ShipmentList/ShipmentList";
-import Shipment from "../../models/shipment";
 import data from "./dummy.json";
 
 function Shipping() {
   const [showNewShipmentModal, setShowNewShipmentModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [showShipmentDetailsModal, setShowShipmentDetailsModal] = useState(false);
-
-  const [currentShipment, setCurrentShipment] = useState<Shipment>();
 
   // These will be replaced by API calls
   const activeShipments = data.shipments.filter(shipment => ["CREATED", "RECEIVED", "INTRANSIT"].includes(shipment.status));
@@ -31,10 +26,10 @@ function Shipping() {
         </div>
 
         <h2 className="text-2xl font-bold">Active Shipments</h2>
-        <ShipmentList shipments={activeShipments} setCurrentShipment={setCurrentShipment} />
+        <ShipmentList shipments={activeShipments} />
 
         <h2 className="text-2xl font-bold">Completed Shipments</h2>
-        <ShipmentList shipments={completedShipments} setCurrentShipment={setCurrentShipment} />
+        <ShipmentList shipments={completedShipments} />
 
       </div>
 
@@ -46,10 +41,6 @@ function Shipping() {
 
       {showConfirmationModal && (
         <ConfirmationModal closeModal={() => setShowConfirmationModal(false)} />
-      )}
-
-      {currentShipment && (
-        <ShipmentDetailsModal shipment={currentShipment} closeModal={() => setCurrentShipment(undefined)} />
       )}
     </>
   )
