@@ -17,7 +17,7 @@ const AdminNav = ({ component:  Component }:MyProps) => {
       <div className='relative min-h-screen bg-color-black text-white md:flex'>
             <AdminMobilNavbar showMenu={showMenu}/>
             <AdminSidebar menu={menu}/>
-            <div className='flex-1 p-10 text-2xl font-bold flex items-center justify-center'>
+            <div className='flex-1 p-10 flex items-center justify-center'>
                 <Component />
             </div>
       </div>

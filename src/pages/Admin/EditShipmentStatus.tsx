@@ -1,7 +1,4 @@
-import { useState} from 'react';
-import{Link,useParams } from 'react-router-dom'
-import AdminMobilNavbar from '../../components/Admin/AdminNavbar/AdminMobilNavbar'
-import AdminSidebar from '../../components/Admin/AdminNavbar/AdminSidebar'
+import{ useParams } from 'react-router-dom'
 import EditSatus from '../../components/Admin/StatusEdit/EditStatus';
 import data from "./Admindummy.json";
 

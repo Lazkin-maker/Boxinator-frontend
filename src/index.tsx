@@ -12,14 +12,6 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-// create link element
-const link = document.createElement('link');
-link.rel = 'stylesheet';
-link.href = 'https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css';
-
-// append link element to head tag
-document.head.appendChild(link);
-
 initialize()
   .then(() => {
     root.render(

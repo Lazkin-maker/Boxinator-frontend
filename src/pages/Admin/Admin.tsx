@@ -1,6 +1,3 @@
-import React, { useState } from 'react'
-import AdminMobilNavbar from '../../components/Admin/AdminNavbar/AdminMobilNavbar'
-import AdminSidebar from '../../components/Admin/AdminNavbar/AdminSidebar'
 import ShipmentList from '../../components/ShipmentList/ShipmentList';
 import data from "./Admindummy.json";
 
