@@ -1,57 +1,53 @@
+import { useState } from "react";
 import Shipment from "../../../models/shipment";
-import ShipmentListItem from "../../ShipmentListItem/ShipmentListItem";
+import { useForm } from "react-hook-form";
 
 type PropsType = {
   shipment:Shipment|undefined;
 }
 
 function EditSatus({shipment}:PropsType) {
-  const headings = ["ID", "Recipient", "Destination", "Price", "Status"];
+  
+  const statusOption = ["CREATED", "RECEIVED", "INTRANSIT","COMPLETED"];
+
+  const [selectedOption, setSelectedOption] = useState("");
 
   return (
+              
+    <tr>
+      <td className="p-8  border-b border-gray-200 bg-white text-sm">
+          <p className="text-gray-900 whitespace-no-wrap">{shipment?.id}</p>
+      </td>
 
-    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-      <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-        <table className="min-w-full leading-normal">
-          <thead>
-            <tr>
-              {headings.map((heading, index) => (
-                  <th key={index} className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      {heading}
-                  </th>
-              ))}
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></th>     
-            </tr>
-          </thead>
-          <tbody>                
-            <tr>
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p className="text-gray-900 whitespace-no-wrap">{shipment?.id}</p>
-              </td>
+      <td className="p-8  border-b border-gray-200 bg-white text-sm">
+          <p className="text-gray-900 whitespace-no-wrap">{shipment?.recipient}</p>
+      </td>
 
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p className="text-gray-900 whitespace-no-wrap">{shipment?.recipient}</p>
-              </td>
+      <td className="p-8  border-b border-gray-200 bg-white text-sm">
+          <p className="text-gray-900 whitespace-no-wrap">{shipment?.destination}</p>
+      </td>
 
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p className="text-gray-900 whitespace-no-wrap">{shipment?.destination}</p>
-              </td>
-
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p className="text-gray-900 whitespace-no-wrap">{shipment?.price} SEK</p>
-              </td>
-
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p className="text-gray-900 whitespace-no-wrap">
-                      
-                  </p>
-              </td> 
-            </tr>     
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <td className="p-8  border-b border-gray-200 bg-white text-sm">
+          <p className="text-gray-900 whitespace-no-wrap">{shipment?.price} SEK</p>
+      </td>
+      <td className=" p-8 border-b border-gray-200 bg-white text-sm">
+        <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 w-4/6">
+        {statusOption.map((status) => (
+          <option value={status}>{status}</option>
+          ))}
+        </select>
+      </td> 
+      <td className="p-8 border-b border-gray-200 bg-white text-sm">
+        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full h-5/6 ">
+          Change
+        </button>
+      </td>
+    </tr> 
+    
+         
   )
   }
   
   export default EditSatus
+
+
