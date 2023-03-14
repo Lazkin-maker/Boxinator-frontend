@@ -1,5 +1,4 @@
-
-import{useParams } from 'react-router-dom'
+import{ useParams } from 'react-router-dom'
 import EditSatus from '../../components/Admin/StatusEdit/EditStatus';
 import data from "./Admindummy.json";
 
