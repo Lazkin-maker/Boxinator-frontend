@@ -27,7 +27,7 @@ const Admin = () => {
       <form onSubmit={ handleSubmit(onSubmit) }>
         <fieldset>
           <input {...register("id",{pattern:/^[0-9]*$/i})} className='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-2/4 ' type="number" placeholder="Shipment ID" />
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold  px-3 pb-2 rounded-full ml-5">
             Search
           </button>
         </fieldset>      
