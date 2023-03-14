@@ -14,11 +14,12 @@ const Admin = () => {
 
   const {register,handleSubmit, formState: {errors}} = useForm();
   const onSubmit = (id?: any) => {
-    if(id != null){
-      setPackage(data.shipments.filter(shipment => shipment.id == id))}
+    if(id.id.length !== 0){
+      setPackage(data.shipments.filter(shipment => {
+        return shipment.id == id.id
+      }))}
     else
     {setPackage(data.shipments);}};
-  //data.shipments.filter(shipment => shipment.status === "COMPLETED");
 
   return (
 
@@ -29,8 +30,7 @@ const Admin = () => {
           <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Search
           </button>
-        </fieldset>
-        
+        </fieldset>      
       </form>
       <h2 className="text-2xl font-bold mt-5">Shipments</h2>
       <ShipmentList shipments={packages} />
