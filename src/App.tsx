@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import AdminNav from "./components/Admin/AdminNavbar/AdminNav";
@@ -9,9 +9,10 @@ import Shipping from "./pages/Shipping/Shipping";
 import keycloak from "./keycloak";
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from './const/roles'
+import CountryMultiplier from "./pages/Admin/CountryMultiplier";
 
 function App() {
- 
+
   const [isAuthenticated, setIsAuthenticated] = useState(keycloak.authenticated);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <main className="min-h-screen bg-slate-900 text-white">
-     
+
       <Routes>
         <Route path="/" element={<Shipping />} />
         <Route path="/shipping" element={<Shipping />} />
@@ -51,16 +52,22 @@ function App() {
           }
         />
         <Route path="/admin" element={
-        <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
-            <AdminNav component={Admin}/>
-        </KeycloakRoute>   
-        }  
+          <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
+            <AdminNav component={Admin} />
+          </KeycloakRoute>
+        }
         />
         <Route path="/admin/edit/:shipmentId" element={
-        <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
-            <AdminNav component={EditShipmentStatus}/>
-        </KeycloakRoute>   
-        }  
+          <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
+            <AdminNav component={EditShipmentStatus} />
+          </KeycloakRoute>
+        }
+        />
+        <Route path="/admin/country" element={
+          <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
+            <AdminNav component={CountryMultiplier} />
+          </KeycloakRoute>
+        }
         />
       </Routes>
     </main>
