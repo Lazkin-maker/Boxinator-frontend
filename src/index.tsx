@@ -13,19 +13,18 @@ const root = ReactDOM.createRoot(
 );
 
 // create link element
-const link = document.createElement('link');
-link.rel = 'stylesheet';
-link.href = 'https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css';
+// const link = document.createElement('link');
+// link.rel = 'stylesheet';
+// link.href = 'https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css';
 
-// append link element to head tag
-document.head.appendChild(link);
+// // append link element to head tag
+// document.head.appendChild(link);
 
 initialize()
   .then(() => {
     root.render(
       <React.StrictMode>
         <BrowserRouter>
-        <Navbar />
           <App />
         </BrowserRouter>
       </React.StrictMode>

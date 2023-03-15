@@ -12,7 +12,7 @@ import { ROLES } from './const/roles'
 import Navbar from './components/navbar/Navbar';
 
 function App() {
- 
+
   const [isAuthenticated, setIsAuthenticated] = useState(keycloak.authenticated);
 
   useEffect(() => {
@@ -40,7 +40,8 @@ function App() {
 
   return (
     <main className="min-h-screen bg-slate-900 text-white">
-     
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Shipping />} />
         <Route path="/shipping" element={<Shipping />} />
@@ -52,10 +53,10 @@ function App() {
           }
         />
         <Route path="/admin" element={
-        <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
+          <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
             <Admin />
-        </KeycloakRoute>   
-        }  
+          </KeycloakRoute>
+        }
         />
       </Routes>
     </main>

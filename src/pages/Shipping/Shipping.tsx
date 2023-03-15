@@ -4,17 +4,52 @@ import NewShipmentModal from "../../components/NewShipmentModal/NewShipmentModal
 import ShipmentList from "../../components/ShipmentList/ShipmentList";
 import data from "./dummy.json";
 import keycloak from "../../keycloak";
+import { useNavigate } from "react-router-dom";
 
 
 function Shipping() {
   const [showNewShipmentModal, setShowNewShipmentModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('keycloakToken'));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [Sub, setSub] = useState("");
 
 
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem('keycloakToken'));
-  }, [localStorage.getItem('keycloakToken')]);
+
+const isAuthenticated = keycloak.authenticated;
+
+const navigate = useNavigate();
+useEffect(() =>{
+  if(isAuthenticated){
+    setIsLoggedIn(true)
+    setSub(keycloak.tokenParsed?.sub || "")
+    navigate("/shipping")
+  }
+}, [])
+   console.log(Sub);
+ 
+  const postData = async (Sub : string) => {
+    const url = "http://localhost:4000/api/users"; // replace with your API endpoint
+    const data = { sub: Sub };
+  
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    };
+  
+    try {
+      const response = await fetch(url, options);
+      const jsonData = await response.json();
+      console.log(jsonData); // do something with the response data
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  postData(keycloak.tokenParsed?.sub || "");
+
 
   // These will be replaced by API calls
   const activeShipments = data.shipments.filter(shipment => ["CREATED", "RECEIVED", "INTRANSIT"].includes(shipment.status));
@@ -47,8 +82,6 @@ function Shipping() {
 
             <h2 className="text-2xl font-bold">Completed Shipments</h2>
             <ShipmentList shipments={completedShipments} />
-
-
           </div>
         ) : (
           <p>please login to view active shipments</p>
