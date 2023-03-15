@@ -15,13 +15,15 @@ function AdminSidebar({menu}:PropsType) {
             <span className=' text-2xl font-extrabold '>Admin</span>
         </Link>
         <nav>
-            <a href="#" className='bg-color-indigo block py-2.5 px-4 transition duration-200 hover:bg-blue-900 rounded'>
+            <Link to="/admin" className='bg-color-indigo block py-2.5 px-4 transition duration-200 hover:bg-blue-900'>
                 Shipping
-            </a>
-            <a href="#" className='bg-color-indigo block py-2.5 px-4 transition duration-200 hover:bg-blue-900 rounded'>
+            </Link>
+            <Link to="/admin/country" className='bg-color-indigo block py-2.5 px-4 transition duration-200 hover:bg-blue-900'>
+                Country Multipliers
+            </Link>
+            <Link to="/shipping" className='bg-color-indigo block py-2.5 px-4 transition duration-200 hover:bg-blue-900'>
                 LogOut
-            </a>
-            
+            </Link>
         </nav>
     </div>
  
