@@ -55,7 +55,6 @@ function App() {
         />
         <Route path="/admin" element={
           <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
-            <Admin />
             <AdminNav component={Admin} />
           </KeycloakRoute>
         }

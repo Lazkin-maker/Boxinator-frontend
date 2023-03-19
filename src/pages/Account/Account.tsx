@@ -3,6 +3,7 @@ import keycloak from '../../keycloak'
 import { useEffect, useState } from "react";
 import UpdateUserModal from '../../components/UpdateUserModal';
 import ConfirmationModal from '../../components/UpdateConfirmation';
+import user from '../../user.json'
 import { json } from 'react-router-dom';
 // import { getUserData } from "your-api-utils";
 
@@ -13,7 +14,7 @@ interface resultProps {
   id: number;
   sub: string;
   dateOfBirth: string; // add this line
-  countryOfResidence: string;
+  country: string;
   zipCode: string;
   contactNumber: string;
 }
@@ -23,12 +24,28 @@ function Account({ }: Props) {
   const [userData, setUserData] = useState<resultProps>();
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [Sub, setSub] = useState("");
 
+  const isAuthenticated = keycloak.authenticated;
+
+  useEffect(() =>{
+    if(isAuthenticated){
+      
+      setSub(keycloak.tokenParsed?.sub || "")
+     
+    }
+  }, [])
+
+  console.log(Sub);
 
   useEffect(() => {
     const api = async () => {
-      const data = await fetch("http://localhost:4000/users/1", {
-        method: "GET"
+      const data = await fetch("https://localhost:7085/api/users/userssub/" + Sub, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+        
       });
       const jsonData = await data.json();
       setUserData(jsonData)
@@ -72,7 +89,7 @@ function Account({ }: Props) {
             </div>
             <div className="flex flex-col">
               <p className="font-medium mb-1">Country of Residence:</p>
-              <p className="mb-2">{userData.countryOfResidence}</p>
+              <p className="mb-2">{userData.country}</p>
             </div>
             <div className="flex flex-col">
               <p className="font-medium mb-1">Zip Code/Postal Code:</p>

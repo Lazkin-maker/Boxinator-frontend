@@ -11,6 +11,8 @@ type Props = {
 function NewShipmentModal({ closeModal, setShowConfirmationModal }: Props) {
   const [price, setPrice] = useState(0);
 
+
+
   return (
     <>
       <div className="mt-2 w-1/2 max-w-lg min-w-min fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 bg-white text-black py-8 px-5 md:px-10 border border-gray-400 rounded-lg">

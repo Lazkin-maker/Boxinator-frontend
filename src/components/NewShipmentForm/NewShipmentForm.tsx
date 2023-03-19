@@ -6,6 +6,8 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { schema, FormData } from "./formSchema";
 import countryMultipliers from "../../shared/countryMultipliers";
 import calculateShipping from "../../shared/calculateShipping";
+import keycloak from "../../keycloak"
+
 
 type Props = {
     price: number,
@@ -19,6 +21,15 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
     const { register, watch, setValue, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+    const isAuthenticated = keycloak.authenticated;
+    useEffect(() => {
+        if (isAuthenticated) {
+            setIsLoggedIn(true)
+        }
+    }, [])
 
     const watchedFields = watch(["weight", "destination"]);
 
@@ -43,13 +54,21 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
 
     return price ? (
         <form id="shipment-form" onSubmit={handleSubmit(onSubmit)} className="max-w-xl mt-0 mx-auto flex flex-col">
-            
+
             {/* recipient input */}
             <label htmlFor="recipient" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
                 Receiver name<span className="text-red-600 font-normal">* {errors.recipient?.message}</span>
             </label>
             <input {...register("recipient")} placeholder="John Doe" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
-
+            {/* email guest input */}
+            {!isLoggedIn && (
+                <div>
+                    <label htmlFor="email" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+                        E-mail<span className="text-red-600 font-normal">* {errors.email?.message}</span>
+                    </label>
+                    <input {...register("email")} placeholder="John.Doe@example.com" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
+                </div>
+            )}
             {/* weight input */}
             <label htmlFor="weight" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
                 Weight tier<span className="text-red-600 font-normal">* {errors.weight?.message}</span>
