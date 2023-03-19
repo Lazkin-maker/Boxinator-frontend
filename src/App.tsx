@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
+import AdminNav from "./components/Admin/AdminNavbar/AdminNav";
 import Account from "./pages/Account/Account";
 import Admin from "./pages/Admin/Admin";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
+import EditShipmentStatus from "./pages/Admin/EditShipmentStatus";
 import Shipping from "./pages/Shipping/Shipping";
 import keycloak from "./keycloak";
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from './const/roles'
-import Navbar from './components/navbar/Navbar';
+import CountryMultiplier from "./pages/Admin/CountryMultiplier";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
 
@@ -55,6 +56,19 @@ function App() {
         <Route path="/admin" element={
           <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
             <Admin />
+            <AdminNav component={Admin} />
+          </KeycloakRoute>
+        }
+        />
+        <Route path="/admin/edit/:shipmentId" element={
+          <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
+            <AdminNav component={EditShipmentStatus} />
+          </KeycloakRoute>
+        }
+        />
+        <Route path="/admin/country" element={
+          <KeycloakRoute role={ROLES.Admin} redirectTo="/shipping">
+            <AdminNav component={CountryMultiplier} />
           </KeycloakRoute>
         }
         />

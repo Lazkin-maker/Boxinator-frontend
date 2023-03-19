@@ -5,11 +5,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .heading-font {
-    font-family: 'Bebas Neue', cursive;
+  font-family: 'Bebas Neue', cursive;
 }
 
 
@@ -66,8 +66,8 @@ pre {
   }
 
 .bg-color-indigo {
-    opacity: 1;
-    background-color: #4F46E5;
+  opacity: 1;
+  background-color: #4F46E5;
 }
 
 .bg-color-black{

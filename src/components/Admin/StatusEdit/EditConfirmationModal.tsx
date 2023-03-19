@@ -1,17 +1,17 @@
-import ModalBackdrop from "../ModalBackdrop/ModalBackdrop"
+import ModalBackdrop from "../../ModalBackdrop/ModalBackdrop"
 
 type Props = {
     closeModal: () => void
 }
 
-function ConfirmationModal({ closeModal }: Props) {
+function EditConfirmationModal({ closeModal }: Props) {
     return (
         <>
-            <div className="mt-2 w-1/2 max-w-lg min-w-min fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 bg-white text-black py-8 px-5 md:px-10 border border-gray-400 rounded-lg">
-                <h1 className="text-xl font-bold whitespace-nowrap">Your order has been created</h1>
-                <p className="text-gray-600 mb-4">We will send you a confirmation email shortly.</p> 
+            <div className="mt-2 w-1/2 max-w-lg fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 bg-white text-black py-10 px-5 md:px-10 border border-gray-400 rounded-lg ">
+                <p className="text-xl font-bold break-words">You have updated the status of the Package</p>
+                
 
-                <button onClick={closeModal} className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-700 transition duration-150 ease-in-out hover:bg-violet-600 bg-violet-700 rounded text-white px-8 py-2 text-sm">
+                <button onClick={closeModal} className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-700 transition duration-150 ease-in-out hover:bg-violet-600 bg-violet-700 rounded text-white px-8 py-2 text-sm mt-5">
                     Close
                 </button>
 
@@ -28,4 +28,4 @@ function ConfirmationModal({ closeModal }: Props) {
     )
 }
 
-export default ConfirmationModal
+export default EditConfirmationModal
