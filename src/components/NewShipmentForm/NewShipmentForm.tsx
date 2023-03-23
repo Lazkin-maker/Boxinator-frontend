@@ -4,8 +4,8 @@ import WeightTiers from "../../enums/weightTiers";
 import { SliderPicker } from 'react-color';
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { schema, FormData } from "./formSchema";
-import countryMultipliers from "../../shared/countryMultipliers";
 import calculateShipping from "../../shared/calculateShipping";
+import { fetchCountries } from "../../api/countries";
 
 type Props = {
     price: number,
@@ -14,8 +14,15 @@ type Props = {
     closeModal: () => void
 }
 
+type Country = { 
+    id: number, 
+    name: string, 
+    multiplier: number 
+}
+
 function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal }: Props) {
     const [currentColor, setCurrentColor] = useState("#8bc34a") // default color
+    const [countryList, setCountryList] = useState<Country[]>([])
     const { register, watch, setValue, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     });
@@ -34,8 +41,19 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
     }
 
     useEffect(() => {
+        const init = async () => {
+            const countries = await fetchCountries();
+            setCountryList(countries as Country[])
+            setValue("destination", countries[0].name);
+            console.log(countries)
+        }
+
+        init();
+    }, [])
+
+    useEffect(() => {
         const [weight = 1, destination = 'Sweden'] = watchedFields;
-        const multiplier = countryMultipliers.get(destination) || 1;
+        const multiplier = countryList.filter(country => country.name === destination)[0]?.multiplier || 0;
         const price = calculateShipping(weight, multiplier);
         setPrice(price);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,8 +85,8 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
             </label>
             <select {...register("destination")} className="mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                 {/* iterate over the countries in multiplier map and create an option for each one */}
-                {Array.from(countryMultipliers.keys()).map((country) => (
-                    <option key={country} value={country}>{country}</option>
+                {countryList.map((country) => (
+                    <option key={country?.id} value={country.name}>{country?.name}</option>
                 ))}
             </select>
 
