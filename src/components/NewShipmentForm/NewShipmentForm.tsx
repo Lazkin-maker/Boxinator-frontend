@@ -6,18 +6,13 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { schema, FormData } from "./formSchema";
 import calculateShipping from "../../shared/calculateShipping";
 import { fetchCountries } from "../../api/countries";
+import { Country } from "../../types/Country";
 
 type Props = {
     price: number,
     setPrice: Dispatch<SetStateAction<number>>,
     setShowConfirmationModal: Dispatch<SetStateAction<boolean>>,
     closeModal: () => void
-}
-
-type Country = { 
-    id: number, 
-    name: string, 
-    multiplier: number 
 }
 
 function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal }: Props) {
