@@ -27,12 +27,13 @@ function Account({ }: Props) {
   const [Sub, setSub] = useState("");
 
   const isAuthenticated = keycloak.authenticated;
+  const token = keycloak.token;
 
-  useEffect(() =>{
-    if(isAuthenticated){
-      
+  useEffect(() => {
+    if (isAuthenticated) {
+
       setSub(keycloak.tokenParsed?.sub || "")
-     
+
     }
   }, [])
 
@@ -40,20 +41,41 @@ function Account({ }: Props) {
 
   useEffect(() => {
     const api = async () => {
-      const data = await fetch("https://localhost:7085/api/users/userssub/" + Sub, {
+      const data = await fetch(`https://localhost:7085/api/users/userssub`, {
         method: "GET",
         headers: {
-          "Content-Type": "application/json"
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
         }
-        
+
       });
       const jsonData = await data.json();
+      console.log(jsonData);
       setUserData(jsonData)
       console.log(JSON.stringify(userData))
 
     };
     api();
-  }, []);
+  }, [Sub]);
+
+
+  // useEffect(() => {
+  //   const api = async () => {
+  //     const data = await fetch(`https://localhost:7085/api/users/userssub/${encodeURIComponent( Sub)}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+
+  //     });
+  //     const jsonData = await data.json();
+  //     console.log(jsonData);
+  //     setUserData(jsonData)
+  //     console.log(JSON.stringify(userData))
+
+  //   };
+  //   api();
+  // }, [Sub]);
 
 
   return (
@@ -117,7 +139,7 @@ function Account({ }: Props) {
       )}
 
       {showConfirmationModal && (
-       <ConfirmationModal closeModal={() => setShowConfirmationModal(false)} />
+        <ConfirmationModal closeModal={() => setShowConfirmationModal(false)} />
       )}
 
     </div>

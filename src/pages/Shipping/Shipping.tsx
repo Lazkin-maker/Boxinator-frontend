@@ -12,10 +12,31 @@ function Shipping() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [Sub, setSub] = useState("");
+  const [RoleID, setRoleID] = useState<number>();
 
 
 
-const isAuthenticated = keycloak.authenticated;
+  const isAuthenticated = keycloak.authenticated;
+  const token = keycloak.token;
+
+
+  useEffect(() => {
+    if (isAuthenticated && keycloak && keycloak.tokenParsed && keycloak.tokenParsed.realm_access) {
+      const roles = keycloak.tokenParsed.realm_access.roles;
+      if (roles.includes('ADMIN')){
+        setRoleID(1);
+      }  
+      else{
+        setRoleID(2);
+      }  
+    }
+  }, [isAuthenticated])
+
+
+
+  console.log(RoleID);
+  
+
 
 const navigate = useNavigate();
 useEffect(() =>{
@@ -27,28 +48,24 @@ useEffect(() =>{
 }, [])
    console.log(Sub);
  
-  const postData = async (Sub : string) => {
-    const url = "http://localhost:4000/api/users"; // replace with your API endpoint
-    const data = { sub: Sub };
+  const postData = async () => {
+    const url = `https://localhost:7085/api/users/${RoleID}`; // replace with your API endpoint
+    const data = { 
+      Sub,
+      RoleID,      
+     };
   
     const options = {
       method: "POST",
       headers: {
+        'Authorization': 'Bearer ' + token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     };
-  
-    try {
-      const response = await fetch(url, options);
-      const jsonData = await response.json();
-      console.log(jsonData); // do something with the response data
-    } catch (error) {
-      console.error(error);
-    }
   }
   
-  postData(keycloak.tokenParsed?.sub || "");
+  postData();
 
 
   // These will be replaced by API calls
