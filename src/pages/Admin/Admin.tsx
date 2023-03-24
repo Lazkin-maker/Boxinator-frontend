@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import React, { useState as useReactState} from 'react';
 import ShipmentList from '../../components/ShipmentList/ShipmentList';
-import data from "./Admindummy.json";
+// import data from "./Admindummy.json";
 import Shipment from '../../models/shipment';
 
 
@@ -10,16 +10,17 @@ import Shipment from '../../models/shipment';
 
 const Admin = () => {
   
-  const [packages, setPackage] = useReactState<Shipment[]>(data.shipments);
+  const [packages, setPackage] = useReactState<Shipment[]>([]);
 
   const {register,handleSubmit, formState: {errors}} = useForm();
   const onSubmit = (id?: any) => {
-    if(id.id.length !== 0){
-      setPackage(data.shipments.filter(shipment => {
-        return shipment.id == id.id
-      }))}
-    else
-    {setPackage(data.shipments);}};
+    // if(id.id.length !== 0){
+    //   setPackage(data.shipments.filter(shipment => {
+    //     return shipment.id == id.id
+    //   }))}
+    // else
+    // {setPackage(data.shipments);}};
+  }
 
   return (
 

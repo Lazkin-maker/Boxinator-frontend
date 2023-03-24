@@ -39,7 +39,7 @@ function EditSatusMobil({shipment, setShowConfirmationModal}:any) {
 
         <div className="p-8  bg-white text-sm flex justify-between">
             <p className="text-gray-900 whitespace-no-wrap text-lg font-semibold">Recipient:</p>
-            <p className="text-gray-900 whitespace-no-wrap ">{shipment?.recipient}</p>
+            <p className="text-gray-900 whitespace-no-wrap ">{shipment?.reciverName}</p>
         </div>
 
         <div className="p-8  bg-white text-sm flex justify-between">

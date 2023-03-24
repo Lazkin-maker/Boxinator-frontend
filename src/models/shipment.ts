@@ -1,9 +1,9 @@
 interface Shipment {
     id: string;
-    recipient: string;
+    reciverName: string;
     destination: string;
     boxColor: string;
-    status: string;
+    statusList: string[];
     email: string | null;
     weight: number;
     price: number;

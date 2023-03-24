@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import { fetchActiveShipmentsUser, fetchCompletedShipmentsUser } from "../../api/shipments";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import NewShipmentModal from "../../components/NewShipmentModal/NewShipmentModal";
 import ShipmentList from "../../components/ShipmentList/ShipmentList";
+import keycloak from "../../keycloak";
+import Shipment from "../../models/shipment";
 import data from "./dummy.json";
 
 function Shipping() {
@@ -9,14 +12,34 @@ function Shipping() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('keycloakToken'));
   
+  const [activeShipments, setActiveShipments] = useState<Shipment[]>([]);
+  const [completedShipments, setCompletedShipments] = useState<Shipment[]>([]);
+  
 
   useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem('keycloakToken'));
-  }, [localStorage.getItem('keycloakToken')]);
+    const isUserLoggedIn = !!localStorage.getItem('keycloakToken');
+    setIsLoggedIn(isUserLoggedIn);
+
+    if (!isUserLoggedIn) return;
+
+    getActiveShipments();
+    getCompletedShipments();
+  }, []);
+  // }, [localStorage.getItem('keycloakToken')]);
 
   // These will be replaced by API calls
-  const activeShipments = data.shipments.filter(shipment => ["CREATED", "RECEIVED", "INTRANSIT"].includes(shipment.status));
-  const completedShipments = data.shipments.filter(shipment => shipment.status === "COMPLETED");
+  // const activeShipments = data.shipments.filter(shipment => ["CREATED", "RECEIVED", "INTRANSIT"].includes(shipment.status));
+  // const completedShipments = data.shipments.filter(shipment => shipment.status === "COMPLETED");
+
+  const getActiveShipments = async () => {
+    const shipments = await fetchActiveShipmentsUser();
+    setActiveShipments(shipments as Shipment[]);
+  }
+
+  const getCompletedShipments = async () => {
+    const shipments = await fetchCompletedShipmentsUser();
+    setCompletedShipments(shipments as Shipment[]);
+  }
 
   return (
     <>
@@ -33,12 +56,12 @@ function Shipping() {
 
         {isLoggedIn ? (
           <div>
+            
             <h2 className="text-2xl font-bold">Active Shipments</h2>
             <ShipmentList shipments={activeShipments} />
 
             <h2 className="text-2xl font-bold">Completed Shipments</h2>
             <ShipmentList shipments={completedShipments} />
-
 
           </div>
         ) : (

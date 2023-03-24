@@ -20,7 +20,7 @@ function ShipmentListItem({ shipment, showDetails }: Props) {
             </td>
 
             <td className="px-2 md:px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <p className="text-gray-900 whitespace-nowrap">{shipment.recipient}</p>
+                <p className="text-gray-900 whitespace-nowrap">{shipment.reciverName}</p>
             </td>
 
             <td className="px-2 md:px-5 py-5 border-b border-gray-200 bg-white text-sm hidden sm:table-cell">
@@ -40,7 +40,7 @@ function ShipmentListItem({ shipment, showDetails }: Props) {
             </td>
 
             <td className="px-2 md:px-5 py-5 border-b border-gray-200 bg-white text-xs sm:text-sm">
-                <StatusDisplay status={shipment.status} />
+                <StatusDisplay statusList={shipment.statusList} />
             </td>
 
             {/* Shipment details modal only visible on mobile devices */}

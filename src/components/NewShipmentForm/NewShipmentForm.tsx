@@ -59,9 +59,9 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
             
             {/* recipient input */}
             <label htmlFor="recipient" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
-                Receiver name<span className="text-red-600 font-normal">* {errors.recipient?.message}</span>
+                Receiver name<span className="text-red-600 font-normal">* {errors.reciverName?.message}</span>
             </label>
-            <input {...register("recipient")} placeholder="John Doe" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
+            <input {...register("reciverName")} placeholder="John Doe" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
 
             {/* weight input */}
             <label htmlFor="weight" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">

@@ -56,7 +56,7 @@ function ShipmentList({ shipments }: Props) {
         setPaginatedItems(nextItems);
     }
 
-    return (
+    return shipments.length ? (
         <>
             <div>
                 <div className="py-4 overflow-x-auto">
@@ -103,7 +103,7 @@ function ShipmentList({ shipments }: Props) {
                 <ShipmentDetailsModal shipment={currentShipment} closeModal={() => setCurrentShipment(undefined)} />
             )}
         </>
-    )
+    ) : null
 }
 
 export default ShipmentList

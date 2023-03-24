@@ -2,7 +2,7 @@
     "shipments": [
         {
             "id": "1",
-            "recipient": "John Doe",
+            "reciverName": "John Doe",
             "destination": "US",
             "boxColor": "red",
             "status": "CREATED",
@@ -13,7 +13,7 @@
         },
         {
             "id": "2",
-            "recipient": "Jane Doe",
+            "reciverName": "Jane Doe",
             "destination": "Germany",
             "boxColor": "blue",
             "status": "RECEIVED",
@@ -23,7 +23,7 @@
         },
         {
             "id": "3",
-            "recipient": "Tim Briggs",
+            "reciverName": "Tim Briggs",
             "destination": "UK",
             "boxColor": "green",
             "status": "INTRANSIT",
@@ -33,7 +33,7 @@
         },
         {
             "id": "4",
-            "recipient": "Oliver Smith",
+            "reciverName": "Oliver Smith",
             "destination": "France",
             "boxColor": "yellow",
             "status": "COMPLETED",
@@ -43,7 +43,7 @@
         },
         {
             "id": "5",
-            "recipient": "Jack Jones",
+            "reciverName": "Jack Jones",
             "destination": "Mexico",
             "boxColor": "red",
             "status": "CANCELLED",
@@ -53,7 +53,7 @@
         },
         {
             "id": "1",
-            "recipient": "John Doe",
+            "reciverName": "John Doe",
             "destination": "US",
             "boxColor": "red",
             "status": "CREATED",
@@ -64,7 +64,7 @@
         },
         {
             "id": "2",
-            "recipient": "Jane Doe",
+            "reciverName": "Jane Doe",
             "destination": "Germany",
             "boxColor": "blue",
             "status": "RECEIVED",
@@ -74,7 +74,7 @@
         },
         {
             "id": "3",
-            "recipient": "Tim Briggs",
+            "reciverName": "Tim Briggs",
             "destination": "UK",
             "boxColor": "green",
             "status": "INTRANSIT",
@@ -84,7 +84,7 @@
         },
         {
             "id": "4",
-            "recipient": "Oliver Smith",
+            "reciverName": "Oliver Smith",
             "destination": "France",
             "boxColor": "yellow",
             "status": "COMPLETED",
@@ -94,7 +94,7 @@
         },
         {
             "id": "5",
-            "recipient": "Jack Jones",
+            "reciverName": "Jack Jones",
             "destination": "Mexico",
             "boxColor": "red",
             "status": "CANCELLED",

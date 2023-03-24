@@ -1,10 +1,12 @@
 import Status from "../../enums/status"
 
 type Props = {
-    status: string
+    statusList: string[]
 }
 
-function StatusDisplay({ status }: Props) {
+function StatusDisplay({ statusList }: Props) {
+
+    const status = statusList[statusList.length - 1];
 
     return status === Status.CREATED ? (
         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">

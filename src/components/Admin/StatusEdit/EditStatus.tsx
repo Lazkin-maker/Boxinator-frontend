@@ -35,7 +35,7 @@ function EditSatus({shipment, setShowConfirmationModal}:any) {
       </td>
 
       <td className="p-8 border-b border-gray-200 bg-white text-sm">
-          <p className="text-gray-900 whitespace-no-wrap">{shipment?.recipient}</p>
+          <p className="text-gray-900 whitespace-no-wrap">{shipment?.reciverName}</p>
       </td>
 
       <td className="p-8 border-b border-gray-200 bg-white text-sm">
