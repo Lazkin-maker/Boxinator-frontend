@@ -11,6 +11,7 @@ export const schema = yup.object({
         
     // }).required("This field is required"),
     boxColor: yup.string().required("Please select a color"),
+    email: yup.string().required("This field is required for guests"),
 })
 
 export type FormData = yup.InferType<typeof schema>;

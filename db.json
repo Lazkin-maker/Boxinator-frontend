@@ -1,0 +1,29 @@
+{
+  "users":[
+    {
+      "id": 1,
+      "sub" : "e1c3c5df-7f33-4e8f-9c17-ff04627347fe",
+      "dateOfBirth": "1990-01-01",
+      "countryOfResidence": "USA",
+      "zipCode": "12345",
+      "contactNumber": "123-456-7890"
+    },
+    {
+      "id": 2,
+      "sub" : "e1c3c5df-7f33-4e8f-9c17-ff04627347ee",
+      "dateOfBirth": "1996-01-01",
+      "countryOfResidence": "Sweden",
+      "zipCode": "12345",
+      "contactNumber": "123-456-7890"
+    },
+    {
+      "id": 3,
+      "sub" : "e1c3c5df-7f33-4e8f-9c17-ff04627347re",
+      "dateOfBirth": "1982-01-01",
+      "countryOfResidence": "Germany",
+      "zipCode": "12345",
+      "contactNumber": "123-456-7890"
+    }
+  ]
+ 
+}

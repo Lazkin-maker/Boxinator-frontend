@@ -10,6 +10,7 @@ import keycloak from "./keycloak";
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from './const/roles'
 import CountryMultiplier from "./pages/Admin/CountryMultiplier";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <main className="min-h-screen bg-slate-900 text-white">
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<Shipping />} />

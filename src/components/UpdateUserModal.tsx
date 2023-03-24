@@ -1,5 +1,8 @@
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, SetStateAction, useState, useEffect } from "react"
 import user from '../user.json'
+import keycloak from "../keycloak";
+
+
 
 
 
@@ -15,6 +18,41 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
   const [countryOfResidence, setCountryOfResidence] = useState(userData.countryOfResidence);
   const [zipCode, setZipCode] = useState(userData.zipCode);
   const [contactNumber, setContactNumber] = useState(userData.contactNumber);
+  const [Sub, setSub] = useState("");
+
+
+  const isAuthenticated = keycloak.authenticated;
+  const token = keycloak.token;
+
+  useEffect(() =>{
+    if(isAuthenticated){
+      setSub(keycloak.tokenParsed?.sub || "")
+    }
+  }, [])
+
+
+  const updateUserInformation = async () => {
+    const response = await fetch('https://localhost:7085/api/users/', {
+      method: 'PUT', // or 'POST' if you're creating a new user
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        dateOfBirth: dateOfBirth,
+        country: countryOfResidence,
+        zipCode: zipCode,
+        contactNumber: contactNumber,
+      })
+    });
+
+    if (response.ok) {
+      closeModal();
+    } else {
+      // The server returned an error
+      // You can handle this event here, for example by showing an error message to the user
+    }
+  };
 
   return (
     <>
@@ -67,39 +105,14 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
 
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => {
-          const updatedUserData = {
-            ...userData,
-            dateOfBirth: dateOfBirth,
-            countryOfResidence: countryOfResidence,
-            zipCode: zipCode,
-            contactNumber: contactNumber
-          };
-
-          fetch('/api/saveUser', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedUserData)
-          })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Failed to save user information.');
-              }
-              console.log('User information saved.');
-            })
-            .catch(error => {
-              console.error(error);
-            });
-        }}
+        onClick={updateUserInformation}
       >
         Save
       </button>
       <button onClick={closeModal} className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">
         Cancel
       </button>
-      
+
     </>
   )
 }

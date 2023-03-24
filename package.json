@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-keycloak/web": "^3.4.0",
     "@hookform/resolvers": "^2.9.11",
+    "@react-keycloak/web": "^3.4.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,6 +12,7 @@
     "@types/node": "^16.18.14",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "json-server": "^0.17.2",
     "keycloak-js": "^21.0.1",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
@@ -19,6 +20,7 @@
     "react-hook-form": "^7.43.5",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "serve-json": "^1.0.4",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "yup": "^1.0.2"
@@ -27,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve-json": "json-server --watch db.json --port 4000"
   },
   "eslintConfig": {
     "extends": [
