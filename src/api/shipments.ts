@@ -33,3 +33,20 @@ export const fetchCompletedShipmentsUser = async () => {
 
     return data;
 }
+
+/**
+ * Fetch all current shipments for the admin
+ */
+export const fetchCurrentShipmentsAdmin = async () => {
+    const response = await fetch("https://localhost:7085/api/v1/admin/shipment/current", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + keycloak.token
+        }
+    })
+
+    const data = await response.json();
+
+    return data;
+}
