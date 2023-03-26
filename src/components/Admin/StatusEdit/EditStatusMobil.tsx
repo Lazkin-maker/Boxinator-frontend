@@ -24,7 +24,6 @@ function EditSatusMobil({shipment, setShowConfirmationModal}:any) {
   useEffect(() => {
     if(shipment.status !== selectedOption.status)
     {
-        console.log(JSON.stringify(selectedOption))
         setShowConfirmationModal(true);
     }
       

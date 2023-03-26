@@ -38,7 +38,6 @@ const RegistrationForm = () => {
                     zipCode: data.zipCode,
                 },
             });
-            console.log(result);
             setSuccessMessage("Registration successful!");
             setErrorMessage(null);
         } catch (error) {

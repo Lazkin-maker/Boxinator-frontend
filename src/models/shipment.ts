@@ -1,5 +1,5 @@
 interface Shipment {
-    id: string;
+    id: number;
     reciverName: string;
     destination: string;
     boxColor: string;

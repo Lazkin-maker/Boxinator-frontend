@@ -45,7 +45,6 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
             const countries = await fetchCountries();
             setCountryList(countries as Country[])
             setValue("destination", countries[0].id);
-            console.log(countries)
         }
 
         init();

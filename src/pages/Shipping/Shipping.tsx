@@ -45,11 +45,6 @@ function Shipping() {
   }, [isAuthenticated])
 
 
-
-  console.log(RoleID);
-  
-
-
 const navigate = useNavigate();
 useEffect(() =>{
   if(isAuthenticated){
@@ -58,7 +53,6 @@ useEffect(() =>{
     navigate("/shipping")
   }
 }, [])
-   console.log(Sub);
  
   const postData = async () => {
     const url = `https://localhost:7085/api/users/${RoleID}`; // replace with your API endpoint
@@ -118,11 +112,10 @@ useEffect(() =>{
           <div>
             
             <h2 className="text-2xl font-bold">Active Shipments</h2>
-            <ShipmentList shipments={activeShipments} />
+            <ShipmentList shipments={activeShipments} setShipments={setActiveShipments} />
 
             <h2 className="text-2xl font-bold">Completed Shipments</h2>
-            <ShipmentList shipments={completedShipments} />
-
+            <ShipmentList shipments={completedShipments} setShipments={setCompletedShipments} />
 
           </div>
         ) : (
