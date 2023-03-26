@@ -34,7 +34,7 @@ const Admin = () => {
         </fieldset>      
       </form>
       <h2 className="text-2xl font-bold mt-5">Shipments</h2>
-      <ShipmentList shipments={packages} />
+      <ShipmentList shipments={packages} setShipments={setPackage} />
     </div>
   )
 }

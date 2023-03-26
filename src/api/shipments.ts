@@ -72,3 +72,21 @@ export const createNewShipmentsGuest = async (body: NewShipmentGuest) => {
 
     return data;
 }
+
+/**
+ * Cancel a shipment, changing its status to cancelled
+ * @param shipmentId Id of the shipment to cancel
+ */
+export const cancelShipment = async (shipmentId: number) => {
+    const response = await fetch(`https://localhost:7085/api/v1/shipment/${shipmentId}/cancel`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + keycloak.token
+        },
+    })
+
+    const data = await response.json();
+
+    return data;
+}
