@@ -23,61 +23,71 @@ function Shipping() {
   const token = keycloak.token;
 
   useEffect(() => {
-   
-
     if (!isAuthenticated) return;
-
+    createNewUser();
     getActiveShipments();
     getCompletedShipments();
   }, []);
-  
+
 
   useEffect(() => {
     if (isAuthenticated && keycloak && keycloak.tokenParsed && keycloak.tokenParsed.realm_access) {
       const roles = keycloak.tokenParsed.realm_access.roles;
-      if (roles.includes('ADMIN')){
+      if (roles.includes('ADMIN')) {
         setRoleID(1);
-      }  
-      else{
+      }
+      else {
         setRoleID(2);
-      }  
+      }
     }
   }, [isAuthenticated])
 
 
 
   console.log(RoleID);
-  
 
 
-const navigate = useNavigate();
-useEffect(() =>{
-  if(isAuthenticated){
-    setIsLoggedIn(true)
-    setSub(keycloak.tokenParsed?.sub || "")
-    navigate("/shipping")
-  }
-}, [])
-   console.log(Sub);
- 
-  const postData = async () => {
-    const url = `https://localhost:7085/api/users/${RoleID}`; // replace with your API endpoint
-    const data = { 
-      Sub,
-      RoleID,      
-     };
-  
-    const options = {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isAuthenticated) {
+      setIsLoggedIn(true)
+      setSub(keycloak.tokenParsed?.sub || "")
+      navigate("/shipping")
+    }
+  }, [])
+  console.log(Sub);
+
+  const createNewUser = async () => {
+    const response = await fetch("https://localhost:7085/api/users/newuser", {
       method: "POST",
       headers: {
         'Authorization': 'Bearer ' + token,
         "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    };
+      }
+    })
   }
-  
-  postData();
+
+
+
+  // const postData = async () => {
+  //   const url = `https://localhost:7085/api/users/newuser`; // replace with your API endpoint
+  //   const data = { 
+  //     Sub,
+  //     RoleID,      
+  //    };
+
+  //   const options = {
+  //     method: "POST",
+  //     headers: {
+  //       'Authorization': 'Bearer ' + token,
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(data)
+  //   };
+  // }
+
+  //postData();
 
 
   // These will be replaced by API calls
@@ -116,7 +126,7 @@ useEffect(() =>{
 
         {isLoggedIn ? (
           <div>
-            
+
             <h2 className="text-2xl font-bold">Active Shipments</h2>
             <ShipmentList shipments={activeShipments} />
 
