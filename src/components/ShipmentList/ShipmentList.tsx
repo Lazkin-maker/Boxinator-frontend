@@ -16,7 +16,7 @@ function ShipmentList({ shipments, setShipments }: Props) {
     const shipmentsPerPage = 4;
     const totalPageCount = Math.ceil(shipments.length / shipmentsPerPage);
 
-    // For mobile details modal
+    // For details modal
     const [currentShipment, setCurrentShipment] = useState<Shipment>();
 
     useEffect(() => {
@@ -58,27 +58,19 @@ function ShipmentList({ shipments, setShipments }: Props) {
         setPaginatedItems(nextItems);
     }
 
-    // const updateShipmentStatus = (shipmentId: number, shipments: Shipment[], status: Status) => {
-    //     return shipments.map(s => {
-    //         if (s.id === shipmentId) { 
-    //             return { ...s, statusList: [...s.statusList, status] }
-    //         } else {
-    //             return s;
-    //         }
-    //     });
-    // };
-
-    const changeShipmentStatusToCancelled = (shipmentId: number) => {
+    const editShipmentStatus = (shipmentId: number, status: Status) => {
         const updatedShipments = shipments.map(s => {
             if (s.id === shipmentId) { 
-                return { ...s, statusList: [...s.statusList, Status.CANCELLED] }
+                const updatedShipment = { ...s, statusList: [...s.statusList, status] }
+                setCurrentShipment(updatedShipment) // update current shipment state
+                return updatedShipment
             } else {
                 return s;
             }
         });
 
         setShipments(updatedShipments);
-    }
+    };
 
     return shipments.length ? (
         <>
@@ -125,7 +117,7 @@ function ShipmentList({ shipments, setShipments }: Props) {
             {currentShipment && (
                 <ShipmentDetailsModal 
                     shipment={currentShipment} 
-                    changeShipmentStatusToCancelled={changeShipmentStatusToCancelled}
+                    editShipmentStatus={editShipmentStatus}
                     closeModal={() => setCurrentShipment(undefined)} />
             )}
         </>

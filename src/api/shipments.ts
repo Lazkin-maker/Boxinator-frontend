@@ -1,3 +1,5 @@
+import statusIds from "../const/statusIds";
+import Status from "../enums/status";
 import keycloak from "../keycloak";
 import NewShipmentGuest from "../models/newShipmentGuest";
 import NewShipmentUser from "../models/newShipmentUser";
@@ -101,6 +103,24 @@ export const cancelShipment = async (shipmentId: number) => {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + keycloak.token
         },
+    })
+
+    const data = await response.json();
+
+    return data;
+}
+
+/**
+ * Change the status of a shipment as admin
+ */
+export const changeShipmentStatus = async (shipmentId: number, status: Status) => {
+    const response = await fetch(`https://localhost:7085/api/v1/admin/shipment/${shipmentId}/addstatus`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + keycloak.token
+        },
+        body: JSON.stringify({ id: statusIds.get(status), statusName: status })
     })
 
     const data = await response.json();

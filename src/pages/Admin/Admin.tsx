@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import React, { useState as useReactState, useEffect } from 'react';
+import { useState as useReactState, useEffect } from 'react';
 import ShipmentList from '../../components/ShipmentList/ShipmentList';
 import keycloak from "../../keycloak";
 import Shipment from '../../models/shipment';
@@ -17,12 +17,14 @@ const Admin = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   useEffect(() => {
-    if (keycloak.authenticated && keycloak && keycloak.tokenParsed && keycloak.tokenParsed.realm_access) {
-      const roles = keycloak.tokenParsed.realm_access.roles;
-      if (!roles.includes('ADMIN')) return;
+    // if (keycloak.authenticated && keycloak && keycloak.tokenParsed && keycloak.tokenParsed.realm_access) {
+    //   const roles = keycloak.tokenParsed.realm_access.roles;
+    // if (!roles.includes('ADMIN')) return;
 
+    if (keycloak.hasRealmRole('ADMIN')) {
       getCurrentShipments();
     }
+    // }
 
   }, []);
 
