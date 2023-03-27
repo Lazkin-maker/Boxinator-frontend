@@ -3,12 +3,14 @@ import Shipment from '../../models/shipment';
 import ShipmentListHeader from '../ShipmentListHeader/ShipmentListHeader';
 import ShipmentListItem from '../ShipmentListItem/ShipmentListItem';
 import ShipmentDetailsModal from "../../components/ShipmentDetailsModal/ShipmentDetailsModal";
+import Status from '../../enums/status';
 
 type Props = {
     shipments: Shipment[],
+    setShipments: (shipments: Shipment[]) => void,
 }
 
-function ShipmentList({ shipments }: Props) {
+function ShipmentList({ shipments, setShipments }: Props) {
     const [paginatedItems, setPaginatedItems] = useState<Shipment[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const shipmentsPerPage = 4;
@@ -56,6 +58,28 @@ function ShipmentList({ shipments }: Props) {
         setPaginatedItems(nextItems);
     }
 
+    // const updateShipmentStatus = (shipmentId: number, shipments: Shipment[], status: Status) => {
+    //     return shipments.map(s => {
+    //         if (s.id === shipmentId) { 
+    //             return { ...s, statusList: [...s.statusList, status] }
+    //         } else {
+    //             return s;
+    //         }
+    //     });
+    // };
+
+    const changeShipmentStatusToCancelled = (shipmentId: number) => {
+        const updatedShipments = shipments.map(s => {
+            if (s.id === shipmentId) { 
+                return { ...s, statusList: [...s.statusList, Status.CANCELLED] }
+            } else {
+                return s;
+            }
+        });
+
+        setShipments(updatedShipments);
+    }
+
     return shipments.length ? (
         <>
             <div>
@@ -98,9 +122,11 @@ function ShipmentList({ shipments }: Props) {
                 </div>
             </div>
 
-            {/* Mobile details modal */}
             {currentShipment && (
-                <ShipmentDetailsModal shipment={currentShipment} closeModal={() => setCurrentShipment(undefined)} />
+                <ShipmentDetailsModal 
+                    shipment={currentShipment} 
+                    changeShipmentStatusToCancelled={changeShipmentStatusToCancelled}
+                    closeModal={() => setCurrentShipment(undefined)} />
             )}
         </>
     ) : null

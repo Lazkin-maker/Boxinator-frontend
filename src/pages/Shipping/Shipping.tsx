@@ -43,11 +43,6 @@ function Shipping() {
   }, [isAuthenticated])
 
 
-
-  console.log(RoleID);
-
-
-
   const navigate = useNavigate();
   useEffect(() => {
     if (isAuthenticated) {
@@ -128,11 +123,10 @@ function Shipping() {
           <div>
 
             <h2 className="text-2xl font-bold">Active Shipments</h2>
-            <ShipmentList shipments={activeShipments} />
+            <ShipmentList shipments={activeShipments} setShipments={setActiveShipments} />
 
             <h2 className="text-2xl font-bold">Completed Shipments</h2>
-            <ShipmentList shipments={completedShipments} />
-
+            <ShipmentList shipments={completedShipments} setShipments={setCompletedShipments} />
 
           </div>
         ) : (

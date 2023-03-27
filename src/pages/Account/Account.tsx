@@ -37,8 +37,6 @@ function Account({ }: Props) {
     }
   }, [])
 
-  console.log(Sub);
-
   useEffect(() => {
     const api = async () => {
       const data = await fetch(`https://localhost:7085/api/users/userssub`, {
@@ -50,10 +48,7 @@ function Account({ }: Props) {
 
       });
       const jsonData = await data.json();
-      console.log(jsonData);
       setUserData(jsonData)
-      console.log(JSON.stringify(userData))
-
     };
     api();
   }, [Sub]);
@@ -69,9 +64,7 @@ function Account({ }: Props) {
 
   //     });
   //     const jsonData = await data.json();
-  //     console.log(jsonData);
   //     setUserData(jsonData)
-  //     console.log(JSON.stringify(userData))
 
   //   };
   //   api();

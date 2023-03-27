@@ -10,8 +10,6 @@ import { fetchCurrentShipmentsAdmin } from "../../api/shipments";
 
 
 const Admin = () => {
-  
-  //const [packages, setPackage] = useReactState<Shipment[]>([]);
   const [currentShipments, setCurrentShipment] = useReactState<Shipment[]>([]);
   const [baseShipments, setBaseShipment] = useReactState<Shipment[]>([]);
   const isAuthenticated = keycloak.authenticated;
@@ -54,14 +52,10 @@ const Admin = () => {
           </fieldset>      
         </form>
         <h2 className="text-2xl font-bold mt-5">Shipments</h2>
-        <ShipmentList shipments={currentShipments} />
+        <ShipmentList shipments={currentShipments} setShipments={setCurrentShipment} />
       </div>
     )
   
   }
 
-
-
 export default Admin
-
-

@@ -13,7 +13,6 @@ function CountryMultiplier() {
             const countries = await fetchCountries();
             setCountryList(countries as Country[])
             setCurrentCountry(countries[0])
-            console.log(countries)
         }
 
         init();
