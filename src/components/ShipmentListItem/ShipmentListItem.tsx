@@ -45,10 +45,8 @@ function ShipmentListItem({ shipment, showDetails }: Props) {
 
             {/* Edit shipment status button for admin page */}
             {window.location.pathname.includes('admin') && (
-                <td className="px-5 py-5 border-b border-gray-200  text-sm">                
-                    <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        <Link to={`/admin/edit/${shipment.id}`}>Edit Status</Link>
-                    </button>
+                <td className="border-b border-gray-200  text-sm">                
+                    <Link to={`/admin/edit/${shipment.id}`} className="px-4 py-2 ml-1 mr-3 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold whitespace-nowrap hover:text-white border border-blue-500 hover:border-transparent rounded">Edit</Link>
                 </td>
             )}
         </tr>
