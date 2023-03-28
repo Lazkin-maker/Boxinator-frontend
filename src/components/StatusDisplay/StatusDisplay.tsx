@@ -35,8 +35,8 @@ function StatusDisplay({ statusList }: Props) {
         </span>
     ) : (
         <span className="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
-            <span aria-hidden className="absolute inset-0 bg-gray-200 opacity-50 rounded-full"></span>
-            <span className="relative">{status}</span>
+            <span aria-hidden className="absolute inset-0 bg-violet-200 opacity-50 rounded-full"></span>
+            <span className="relative">UNKNOWN</span>
         </span>
     )
 }
