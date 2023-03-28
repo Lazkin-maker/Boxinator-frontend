@@ -21,13 +21,13 @@ function EditSatusMobil({shipment, setShowConfirmationModal}:any) {
     setSelectedOption(updatedStatus);
   };
 
-  useEffect(() => {
-    if(shipment.status !== selectedOption.status)
-    {
-        setShowConfirmationModal(true);
-    }
+  // useEffect(() => {
+  //   if(shipment.status !== selectedOption.status)
+  //   {
+  //       setShowConfirmationModal(true);
+  //   }
       
-  }, [selectedOption]);
+  // }, [selectedOption]);
   return (
 
     <div className="md:hidden">

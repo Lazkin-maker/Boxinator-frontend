@@ -3,6 +3,8 @@ import Status from "../enums/status";
 import keycloak from "../keycloak";
 import NewShipmentGuest from "../models/newShipmentGuest";
 import NewShipmentUser from "../models/newShipmentUser";
+import ShipmentPutAdmin from "../models/ShipmentPutAdmin"
+import Shipment from "../models/shipment";
 
 /**
  * Fetch all active shipments for the user
@@ -121,6 +123,41 @@ export const changeShipmentStatus = async (shipmentId: number, status: Status) =
             "Authorization": "Bearer " + keycloak.token
         },
         body: JSON.stringify({ id: statusIds.get(status), statusName: status })
+    })
+}
+
+
+    /** 
+   * Fetch shipment by Id for the admin change status
+  */
+export const fetchShipmentByIdsAdmin = async (shipmentId: number) => {
+    const response = await fetch(`https://localhost:7085/api/v1/admin/shipment/${shipmentId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + keycloak.token
+        }
+    })
+
+    const data = await response.json();
+
+    return data;
+}
+
+
+
+/**
+ * Cancel a shipment, changing its status to cancelled
+ * @param shipmentId Id of the shipment to cancel
+ */
+export const updateShipment = async (shipmentId: number, body : ShipmentPutAdmin) => {
+    const response = await fetch(`https://localhost:7085/api/v1/admin/shipment/${shipmentId}/update`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + keycloak.token
+        },
+        body: JSON.stringify(body)
     })
 
     const data = await response.json();

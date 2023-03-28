@@ -9,6 +9,7 @@ enum Countries {
     Lithuania = 'Lithuania',
     Poland = 'Poland',
     Germany = 'Germany',
+    Luxembourg = 'Luxembourg',
     France = 'France',
     Spain = 'Spain',
     Portugal = 'Portugal',
@@ -19,6 +20,7 @@ enum Countries {
     Belgium = 'Belgium',
     UnitedKingdom = 'United Kingdom',
     Ireland = 'Ireland',
+    CzechRepublic = 'CzechRepublic'
 }
 
 export default Countries;
