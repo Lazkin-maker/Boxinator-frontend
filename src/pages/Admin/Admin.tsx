@@ -31,8 +31,9 @@ const Admin = () => {
 
   const getCurrentShipments = async () => {
     const shipments = await fetchCurrentShipmentsAdmin();
-    setCurrentShipment(shipments as Shipment[]);
-    setBaseShipment(shipments as Shipment[]);
+    const newestShipmentFirst = shipments.reverse();
+    setCurrentShipment(newestShipmentFirst as Shipment[]);
+    setBaseShipment(newestShipmentFirst as Shipment[]);
   }
 
 

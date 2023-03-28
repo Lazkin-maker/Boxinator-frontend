@@ -50,12 +50,14 @@ function Shipping() {
 
   const getActiveShipments = async () => {
     const shipments = await fetchActiveShipmentsUser();
-    setActiveShipments(shipments as Shipment[]);
+    const newestShipmentFirst = shipments.reverse();
+    setActiveShipments(newestShipmentFirst  as Shipment[]);
   }
 
   const getPreviousShipments = async () => {
     const shipments = await fetchPreviousShipmentsUser();
-    setPreviousShipments(shipments as Shipment[]);
+    const newestShipmentFirst = shipments.reverse();
+    setPreviousShipments(newestShipmentFirst as Shipment[]);
   }
 
   return (
