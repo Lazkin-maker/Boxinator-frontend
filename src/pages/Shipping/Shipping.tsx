@@ -70,7 +70,7 @@ function Shipping() {
 
 
         <div className="max-w-2xl mx-auto text-center mb-8">
-          <h1 className="text-3xl font-bold mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam labore aut mollitia!</h1>
+          <h1 className="text-3xl font-bold mb-4">Unbox the Mystery with Boxinator:<br />Shipping Thrill Straight to Your Doorstep!</h1>
           <button
             onClick={() => setShowNewShipmentModal(true)}
             className="bg-violet-600 text-white font-bold rounded-lg px-8 py-4">
