@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchActiveShipmentsUser, fetchCompletedShipmentsUser } from "../../api/shipments";
+import { fetchActiveShipmentsUser, fetchPreviousShipmentsUser } from "../../api/shipments";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import NewShipmentModal from "../../components/NewShipmentModal/NewShipmentModal";
 import ShipmentList from "../../components/ShipmentList/ShipmentList";
@@ -13,9 +13,8 @@ function Shipping() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [Sub, setSub] = useState("");
-  const [RoleID, setRoleID] = useState<number>();
   const [activeShipments, setActiveShipments] = useState<Shipment[]>([]);
-  const [completedShipments, setCompletedShipments] = useState<Shipment[]>([]);
+  const [previousShipments, setPreviousShipments] = useState<Shipment[]>([]);
 
 
 
@@ -26,21 +25,8 @@ function Shipping() {
     if (!isAuthenticated) return;
     createNewUser();
     getActiveShipments();
-    getCompletedShipments();
+    getPreviousShipments();
   }, []);
-
-
-  useEffect(() => {
-    if (isAuthenticated && keycloak && keycloak.tokenParsed && keycloak.tokenParsed.realm_access) {
-      const roles = keycloak.tokenParsed.realm_access.roles;
-      if (roles.includes('ADMIN')) {
-        setRoleID(1);
-      }
-      else {
-        setRoleID(2);
-      }
-    }
-  }, [isAuthenticated])
 
 
   const navigate = useNavigate();
@@ -51,7 +37,6 @@ function Shipping() {
       navigate("/shipping")
     }
   }, [])
-  console.log(Sub);
 
   const createNewUser = async () => {
     const response = await fetch("https://localhost:7085/api/users/newuser", {
@@ -63,40 +48,14 @@ function Shipping() {
     })
   }
 
-
-
-  // const postData = async () => {
-  //   const url = `https://localhost:7085/api/users/newuser`; // replace with your API endpoint
-  //   const data = { 
-  //     Sub,
-  //     RoleID,      
-  //    };
-
-  //   const options = {
-  //     method: "POST",
-  //     headers: {
-  //       'Authorization': 'Bearer ' + token,
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(data)
-  //   };
-  // }
-
-  //postData();
-
-
-  // These will be replaced by API calls
-  // const activeShipments = data.shipments.filter(shipment => ["CREATED", "RECEIVED", "INTRANSIT"].includes(shipment.status));
-  // const completedShipments = data.shipments.filter(shipment => shipment.status === "COMPLETED");
-
   const getActiveShipments = async () => {
     const shipments = await fetchActiveShipmentsUser();
     setActiveShipments(shipments as Shipment[]);
   }
 
-  const getCompletedShipments = async () => {
-    const shipments = await fetchCompletedShipmentsUser();
-    setCompletedShipments(shipments as Shipment[]);
+  const getPreviousShipments = async () => {
+    const shipments = await fetchPreviousShipmentsUser();
+    setPreviousShipments(shipments as Shipment[]);
   }
 
   return (
@@ -125,8 +84,8 @@ function Shipping() {
             <h2 className="text-2xl font-bold">Active Shipments</h2>
             <ShipmentList shipments={activeShipments} setShipments={setActiveShipments} />
 
-            <h2 className="text-2xl font-bold">Completed Shipments</h2>
-            <ShipmentList shipments={completedShipments} setShipments={setCompletedShipments} />
+            <h2 className="text-2xl font-bold">Previous Shipments</h2>
+            <ShipmentList shipments={previousShipments} setShipments={setPreviousShipments} />
 
           </div>
         ) : (

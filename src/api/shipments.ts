@@ -24,8 +24,8 @@ export const fetchActiveShipmentsUser = async () => {
 /**
  * Fetch all completed shipments for the user
  */
-export const fetchCompletedShipmentsUser = async () => {
-    const response = await fetch("https://localhost:7085/api/v1/shipment/completed", {
+export const fetchPreviousShipmentsUser = async () => {
+    const response = await fetch("https://localhost:7085/api/v1/shipment/previous", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
