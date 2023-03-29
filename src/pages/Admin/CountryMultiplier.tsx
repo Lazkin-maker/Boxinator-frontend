@@ -51,7 +51,7 @@ function CountryMultiplier() {
         <div className="max-w-3xl">
             <h1 className="text-2xl">Edit Country Multipliers</h1>
 
-            <select onChange={handleSelectChange} className="mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+            <select onChange={handleSelectChange} className="mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-violet-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                 {/* iterate over the countries in multiplier map and create an option for each one */}
                 {countryList.map((country) => (
                     <option key={country?.id} value={country.name}>{country?.name}</option>
@@ -63,9 +63,9 @@ function CountryMultiplier() {
                 type="number"
                 value={currentCountry?.multiplier}
                 onChange={handleInputChange}
-                className="w-full mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
+                className="w-full mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-violet-700 font-normal h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
 
-            <button onClick={handleSaveChanges} className="w-full bg-indigo-600 h-10 mb-5 rounded disabled:bg-gray-600">Save changes</button>
+            <button onClick={handleSaveChanges} className="w-full bg-violet-600 h-10 mb-5 rounded disabled:bg-gray-600">Save changes</button>
 
         </div>
     )

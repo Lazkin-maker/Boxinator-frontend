@@ -97,14 +97,14 @@ function ShipmentList({ shipments, setShipments }: Props) {
                                     <button
                                         onClick={handlePrev}
                                         disabled={currentPage === 1}
-                                        className="text-sm text-indigo-50 transition duration-150 hover:bg-violet-500 bg-violet-600 font-semibold py-2 px-4 rounded-l disabled:bg-slate-400">
+                                        className="text-sm text-violet-50 transition duration-150 hover:bg-violet-500 bg-violet-600 font-semibold py-2 px-4 rounded-l disabled:bg-slate-400">
                                         Prev
                                     </button>
                                     &nbsp; &nbsp;
                                     <button
                                         onClick={handleNext}
                                         disabled={currentPage === totalPageCount}
-                                        className="text-sm text-indigo-50 transition duration-150 hover:bg-violet-500 bg-violet-600 font-semibold py-2 px-4 rounded-r disabled:bg-slate-400">
+                                        className="text-sm text-violet-50 transition duration-150 hover:bg-violet-500 bg-violet-600 font-semibold py-2 px-4 rounded-r disabled:bg-slate-400">
                                         Next
                                     </button>
                                 </div>

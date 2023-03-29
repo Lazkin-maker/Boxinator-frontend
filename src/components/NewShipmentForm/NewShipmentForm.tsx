@@ -101,7 +101,7 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
             </label>
 
 
-            <input {...register("reciverName")} placeholder="John Doe" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
+            <input {...register("reciverName")} placeholder="John Doe" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-violet-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
 
             {/* email guest input */}
             {!keycloak.authenticated && (
@@ -109,7 +109,7 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
                     <label htmlFor="email" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
                         E-mail<span className="text-red-600 font-normal">* {errors.email?.message}</span>
                     </label>
-                    <input {...register("email")} placeholder="john.doe@example.com" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
+                    <input {...register("email")} placeholder="john.doe@example.com" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-violet-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" />
                 </div>
             )}
 
@@ -117,7 +117,7 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
             <label htmlFor="weight" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
                 Weight tier<span className="text-red-600 font-normal">* {errors.weight?.message}</span>
             </label>
-            <select {...register("weight")} className="mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+            <select {...register("weight")} className="mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-violet-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                 <option value={WeightTiers.Basic}>Basic {WeightTiers.Basic}kg</option>
                 <option value={WeightTiers.Humble}>Humble {WeightTiers.Humble}kg</option>
                 <option value={WeightTiers.Deluxe}>Deluxe {WeightTiers.Deluxe}kg</option>
@@ -128,7 +128,7 @@ function NewShipmentForm({ price, setPrice, setShowConfirmationModal, closeModal
             <label htmlFor="destination" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
                 Destination Country<span className="text-red-600 font-normal">* {errors.destination?.message}</span>
             </label>
-            <select {...register("destination")} className="mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+            <select {...register("destination")} className="mb-5 mt-2 bg-white text-gray-600 focus:outline-none focus:border focus:border-violet-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                 {/* iterate over the countries in multiplier map and create an option for each one */}
                 {countryList.map((country) => (
                     <option key={country.id} value={country.id}>{country.name}</option>

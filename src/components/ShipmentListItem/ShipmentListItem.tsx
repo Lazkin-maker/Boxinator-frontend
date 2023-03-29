@@ -40,13 +40,13 @@ function ShipmentListItem({ shipment, showDetails }: Props) {
 
             {/* Shipment details modal only visible on mobile devices */}
             {/* <td className="pl-2 pr-4 md:px-5 py-5 border-b border-gray-200  text-sm">
-                <button onClick={showDetails} className="text-indigo-600 hover:text-indigo-900 underline">Details</button>
+                <button onClick={showDetails} className="text-violet-600 hover:text-violet-900 underline">Details</button>
             </td> */}
 
             {/* Edit shipment status button for admin page */}
             {window.location.pathname.includes('admin') && (
                 <td className="border-b border-gray-200  text-sm">                
-                    <Link to={`/admin/edit/${shipment.id}`} className="px-4 py-2 ml-1 mr-3 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold whitespace-nowrap hover:text-white border border-blue-500 hover:border-transparent rounded">Edit</Link>
+                    <Link to={`/admin/edit/${shipment.id}`} className="px-4 py-2 ml-1 mr-3 bg-transparent hover:bg-violet-500 text-violet-700 font-semibold whitespace-nowrap hover:text-white border border-violet-500 hover:border-transparent rounded">Edit</Link>
                 </td>
             )}
         </tr>

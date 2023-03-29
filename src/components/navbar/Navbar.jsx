@@ -27,14 +27,14 @@ function Navbar() {
 
 
   return (
-    <nav className="bg-purple-900">
+    <nav className="bg-violet-800 py-2">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/">
-              <img src="/deliveryPic.jpg" alt="Logo" className="h-8 nav-image" />
+              <img src="/deliveryPic.jpg" alt="Logo" className="h-12 w-12 rounded-full" />
             </Link>
-            <div className="ml-4">
+            <div className="ml-3">
               <h1 className="text-white font-bold text-xl">Boxinator</h1>
             </div>
           </div>

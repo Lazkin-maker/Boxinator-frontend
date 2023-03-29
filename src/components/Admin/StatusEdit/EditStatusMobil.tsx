@@ -51,14 +51,14 @@ function EditSatusMobil({shipment, setShowConfirmationModal}:any) {
             <p className="text-gray-900 whitespace-no-wrap">{shipment?.price} SEK</p>
         </div>
         <div className="p-8   bg-white text-sm">
-            <select {...register('selectedStatus')} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select {...register('selectedStatus')} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500">
             {statusOption.map((status, index) => (
             <option value={status} key={index}>{status}</option>
             ))}
             </select>
         </div> 
         <div className="p-8  bg-white text-sm flex justify-center">
-            <button type="submit" onClick={handleSubmit(onSubmit)} className="bg-blue-500 focus:bg-blue-700 text-white font-bold px-4 py-3 rounded-full h-5/6 flex items-center">
+            <button type="submit" onClick={handleSubmit(onSubmit)} className="bg-violet-500 focus:bg-violet-700 text-white font-bold px-4 py-3 rounded-full h-5/6 flex items-center">
             Change
             </button>
         </div>

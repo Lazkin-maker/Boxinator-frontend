@@ -67,6 +67,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
     };
     updateShipment(shipment.id, updatedShipment)
 
+    
   };
 
   // useEffect(() => {
@@ -85,7 +86,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
         <input
           id="reciverName"
           type="text"
-          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
 
           {...register('reciverName')}
         />
@@ -98,7 +99,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
         <input
           id="weight"
           type="text"
-          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
 
           {...register('weight')}
         />
@@ -111,7 +112,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
         <input
           id="boxColor"
           type="text"
-          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
 
           {...register('boxColor')}
         />
@@ -126,7 +127,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
         <input
           id="destination"
           type="text"
-          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
 
           {...register('destination')}
         />
@@ -139,7 +140,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
         <input
           id="email"
           type="text"
-          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
 
           {...register('email')}
         />
@@ -152,7 +153,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
         <input
           id="price"
           type="number"
-          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
           {...register('price', {
             required: true,
             min: 0,
@@ -178,7 +179,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
         <select
           id="selectedStatus"
           {...register('selectedStatus')}
-          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
         >
           {statusOption.map((status, index) => (
             <option value={status} key={index}>{status}</option>
@@ -190,7 +191,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
         <button
           type="submit"
           onClick={handleSubmit(onSubmit)}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-6 py-2 rounded-full"
+          className="bg-violet-500 hover:bg-violet-700 text-white font-bold px-6 py-2 rounded-full"
         >
           Change
         </button>

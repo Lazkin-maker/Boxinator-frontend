@@ -23,11 +23,11 @@ function LoginForm() {
                                 <div>
                                     <hr class="mt-6 border-b-1 border-blueGray-300" />
                                     <div class="relative w-full mt-3">
-                                        <span class="text-sm">Skip login and log in as </span><a class="text-blue-500 text-sm font-semibold" href="/account">Guest</a>
+                                        <span class="text-sm">Skip login and log in as </span><a class="text-violet-500 text-sm font-semibold" href="/account">Guest</a>
                                     </div>
                                     <hr class="mt-6 border-b-1 border-blueGray-300" />
                                     <div class="relative w-full mt-3">
-                                        <span class="text-sm">Register as new User </span><a class="text-blue-500 text-sm font-semibold" href="/register">Register</a>
+                                        <span class="text-sm">Register as new User </span><a class="text-violet-500 text-sm font-semibold" href="/register">Register</a>
                                     </div>
                                 </div>
                             )}
