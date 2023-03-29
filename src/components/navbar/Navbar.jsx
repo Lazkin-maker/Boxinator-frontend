@@ -39,10 +39,7 @@ function Navbar() {
             </div>
           </div>
           <div className="flex">
-            <ul className="flex items-center">
-              {/* <li className="ml-8">
-                <Link to="/" className="text-white hover:text-gray-300">Start</Link>
-              </li> */}
+            <ul className="flex items-center font-bold">
               {isAuthenticated && (
                 <li className="ml-8">
                   <Link to="/account" className="text-white hover:text-gray-300">Account</Link>
@@ -59,17 +56,20 @@ function Navbar() {
                 </li>
               )}
             </ul>
-            {!isAuthenticated && (
+            {!isAuthenticated ? (
               <ul className="flex items-center ml-8">
                 <li>
                   <button onClick={() => {
                     keycloak.login({ redirectUri: window.location.origin + "/shipping" })
-                  }} className="bg-white text-gray-900 rounded-full py-2 px-4 hover:text-gray-300 ">Login</button>
+                  }} className="bg-white text-violet-900 rounded-full py-2 px-4 hover:bg-gray-200 hover:text-violet-700 mr-3 transition-all">Login</button>
+                </li>
+                <li>
+                  <button onClick={() => {
+                    keycloak.register({ redirectUri: window.location.origin + "/shipping" })
+                  }} className="border border-white text-white rounded-full py-2 px-4 hover:bg-white hover:text-violet-800 transition-all">Sign up</button>
                 </li>
               </ul>
-            )}
-
-            {isAuthenticated && (
+            ) : (
               <ul className="flex items-center ml-8">
                 <li>
                   <button onClick={handleLogout} className="bg-white text-gray-900 rounded-full py-2 px-4 hover:text-gray-300">Logout</button>
