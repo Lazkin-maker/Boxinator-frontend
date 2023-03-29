@@ -1,12 +1,10 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
-import React, { useEffect } from 'react';
 import { updateShipment } from "../../../api/shipments";
 import countryIds from "../../../const/countyIds";
 import Shipment from "../../../models/shipment";
-import { Country } from "../../../types/Country";
-
 import Countries from "../../../enums/countries";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   shipment: Shipment,
@@ -27,13 +25,11 @@ type FormData = {
 
 function EditSatus({ shipment, setShowConfirmationModal }: Props) {
 
+  const navigate = useNavigate();
+
   const statusOption = ["CREATED", "RECEIVED", "INTRANSIT", "COMPLETED"];
 
-  const [selectedOption, setSelectedOption] = useState({
-    id: shipment.id,
-    status: shipment.statusList[shipment.statusList.length - 1]
-  });
-  const { register, handleSubmit, setValue , formState: { errors }} = useForm({
+  const { register, handleSubmit, formState: { errors }} = useForm({
     defaultValues: {
       reciverName: shipment.reciverName,
       weight: shipment.weight,
@@ -45,13 +41,7 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
     }
   });
 
-  const handleSelectChange = (event: any) => {
-    setValue('selectedStatus', event.target.value);
-  };
-
   const onSubmit = (data: FormData) => {
-    //const updatedStatus = { ...selectedOption, status: data.selectedStatus };
-    // setSelectedOption(updatedStatus);
     const destinationName = data.destination;
     const destinationId = countryIds.get(destinationName as Countries);
     if (!destinationId) return;
@@ -65,18 +55,14 @@ function EditSatus({ shipment, setShowConfirmationModal }: Props) {
       "price": data.price,
       statusList: [...shipment.statusList, data.selectedStatus]
     };
-    updateShipment(shipment.id, updatedShipment)
 
+    // Update shipment with PUT request
+    updateShipment(shipment.id, updatedShipment)
     
+    // Then navigate back to active shipments
+    navigate("/admin")
   };
 
-  // useEffect(() => {
-  //     if (shipment.status !== selectedOption.status) {
-  //       setShowConfirmationModal(true);
-  //     }
-
-
-  // }, [selectedOption]);
   return (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       <div className="mb-4">
