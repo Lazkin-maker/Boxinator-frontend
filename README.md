@@ -1,3 +1,30 @@
+# Boxinator
+
+This is an application that acts as a box shipping service, built using React framework. The application work as a service to ship and track mystery boxes to people all around the world.
+
+## Features
+- Shipment functionality : which is made for both registered and no registered users. When the program runs the user will be directed to startup page "Guest page", and there the "Guest" user has ability to register himself as new user or login or just ignore it and send a new shipment.
+
+- User functionality : It is made for users who are registered. When the user logs in, he/she will be able to see current and previous shipments that they made. They will also be able to modifie thier account information such as (mobile number, country , date of birth , etc.). A registered user can also create a new or cancel shipments.
+
+- Admin dashboard: This page is only for users who have adminstrative roles. An admin has advanced features such as (see all shipments and their related info, edit status and other information for a specific shipment and edit country multiplier). 
+
+- Security: For this part we have set up keycloak server to authorize and authenticated different users. Users are able to login/register themself by using "keycloak" form. 
+
+## Rquirments
+- Npm/Node.js
+- React CRA (create-react-app)
+- Visual Studio Code Text Editor/ IntelliJ
+- Browser Developer Tools for testing and debugging
+- React Dveloper Tools
+- Git
+
+# Team members
+- [Lazkin Youssuf](https://github.com/Lazkin-maker)
+- [Rubin Barclay](https://github.com/RubinBarclay)
+-  [Jakob Mehamad Burhan](https://github.com/Jakob-mbi)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -44,3 +71,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# Project status
+The project has achieved basic functionality, feel free to frok this project and add more features to make it more advanced. Some suggestions to work with:
+1. Add some error handling. The project missing the ability to inform the user if something goes wrong.
+2. Add email confirmation when a new shipment has created.
+
+## License
+This project is licensed under the MIT license. See [LICENSE.md](https://github.com/Lazkin-maker/Boxinator-frontend/blob/main/LICENSE.md) for more information.
