@@ -32,6 +32,16 @@ function CountryMultiplier() {
             })
         }
 
+        const updatedCountryList = countryList.map(country => {
+            if (country.id == currentCountry?.id) {
+                return currentCountry;
+            } else {
+                return country;
+            }
+        })
+
+        setCountryList(updatedCountryList);
+
         updateCountry();
     }
 
