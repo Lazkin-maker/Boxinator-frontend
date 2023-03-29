@@ -17,15 +17,9 @@ const Admin = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   useEffect(() => {
-    // if (keycloak.authenticated && keycloak && keycloak.tokenParsed && keycloak.tokenParsed.realm_access) {
-    //   const roles = keycloak.tokenParsed.realm_access.roles;
-    // if (!roles.includes('ADMIN')) return;
-
     if (keycloak.hasRealmRole('ADMIN')) {
       getCurrentShipments();
     }
-    // }
-
   }, []);
 
 
@@ -69,7 +63,7 @@ const Admin = () => {
           </button>
         </div>
       </form>
-      <h2 className="text-2xl font-bold mt-5">Shipments</h2>
+      <h2 className="text-2xl font-bold mt-5">Active Shipments</h2>
       <ShipmentList shipments={currentShipments} setShipments={setCurrentShipment} />
     </div>
   )
