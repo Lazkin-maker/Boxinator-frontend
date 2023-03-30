@@ -13,28 +13,21 @@ function Shipping() {
   const [showNewShipmentModal, setShowNewShipmentModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [Sub, setSub] = useState("");
   const [activeShipments, setActiveShipments] = useState<Shipment[]>([]);
   const [previousShipments, setPreviousShipments] = useState<Shipment[]>([]);
-
-  const isAuthenticated = keycloak.authenticated;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!keycloak.authenticated) return;
+
     createNewUserHandler();
     getActiveShipments();
     getPreviousShipments();
+    setIsLoggedIn(true)
+    navigate("/shipping")
+  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (isAuthenticated) {
-      setIsLoggedIn(true)
-      setSub(keycloak.tokenParsed?.sub || "")
-      navigate("/shipping")
-    }
-  }, [])
 
   const createNewUserHandler = async () => {
     const response = await createNewUser();
