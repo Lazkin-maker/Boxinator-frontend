@@ -1,7 +1,7 @@
 import keycloak from "../keycloak";
 
 export const createNewUser = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/newuser`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/newuser`, {
       method: "POST",
       headers: {
         'Authorization': 'Bearer ' + keycloak.token,
@@ -16,7 +16,7 @@ export const updateUserInformation = async (
     { dateOfBirth, countryOfResidence, zipCode, contactNumber }:
     { dateOfBirth: string, countryOfResidence: string, zipCode: string, contactNumber: string }
     ) => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/`, {
       method: 'PUT', // or 'POST' if you're creating a new user
       headers: {
         'Authorization': 'Bearer ' + keycloak.token,
@@ -34,7 +34,7 @@ export const updateUserInformation = async (
 };
 
 export const fetchUserSub = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/userssub`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/userssub`, {
     method: "GET",
     headers: {
         'Authorization': 'Bearer ' + keycloak.token,
