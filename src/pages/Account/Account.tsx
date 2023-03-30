@@ -22,7 +22,7 @@ interface resultProps {
 
 
 function Account({ }: Props) {
-  const [userData, setUserData] = useState<resultProps>();
+  const [Data, setData] = useState<resultProps>();
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [Sub, setSub] = useState("");
@@ -41,11 +41,10 @@ function Account({ }: Props) {
   useEffect(() => {
     const api = async () => {
       const userSub = await fetchUserSub();
-      setUserData(userSub)
+      setData(userSub)
     };
     api();
   }, [Sub]);
-
 
   return (
     <div className=" shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -70,25 +69,25 @@ function Account({ }: Props) {
       }
 
       <hr></hr>
-      {userData && (
+      {Data && (
 
         <div className="mt-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col">
               <p className="font-medium mb-1">Date of Birth:</p>
-              <p className="mb-2">{userData.dateOfBirth}</p>
+              <p className="mb-2">{Data.dateOfBirth}</p>
             </div>
             <div className="flex flex-col">
               <p className="font-medium mb-1">Country of Residence:</p>
-              <p className="mb-2">{userData.country}</p>
+              <p className="mb-2">{Data.country}</p>
             </div>
             <div className="flex flex-col">
               <p className="font-medium mb-1">Zip Code/Postal Code:</p>
-              <p className="mb-2">{userData.zipCode}</p>
+              <p className="mb-2">{Data.zipCode}</p>
             </div>
             <div className="flex flex-col">
               <p className="font-medium mb-1">Contact Number:</p>
-              <p className="mb-2">{userData.contactNumber}</p>
+              <p className="mb-2">{Data.contactNumber}</p>
 
             </div>
           </div>
@@ -101,10 +100,12 @@ function Account({ }: Props) {
         Update User
       </button>
 
-      {showUpdateUser && (
+      {showUpdateUser && Data && (
         <UpdateUserModal
+          Data={Data}
           setShowConfirmationModal={setShowConfirmationModal}
-          closeModal={() => setShowUpdateUser(false)} />
+          closeModal={() => setShowUpdateUser(false)}
+          />
       )}
 
       {showConfirmationModal && (
