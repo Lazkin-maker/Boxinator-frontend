@@ -63,7 +63,7 @@ function Shipping() {
   return (
     <>
       {keycloak.tokenParsed && (
-        <div className=" rounded-lg p-4 mb-4 text-left">
+        <div className="rounded-lg p-4 mb-4 text-left">
           Logged as: <span className="font-bold">{keycloak.tokenParsed.preferred_username}</span>
         </div>
       )}
@@ -71,11 +71,11 @@ function Shipping() {
       <div className="container max-w-4xl mx-auto px-4 pt-20">
 
 
-        <div className="max-w-2xl mx-auto text-center mb-8">
-          <h1 className="text-3xl font-bold mb-4">Unbox the Mystery with Boxinator:<br />Shipping Thrill Straight to Your Doorstep!</h1>
+        <div className="max-w-2xl mx-auto text-center">
+          <h1 className="text-3xl font-bold mb-8">Unbox the Mystery with Boxinator:<br />Shipping Thrill Straight to Your Doorstep!</h1>
           <button
             onClick={() => setShowNewShipmentModal(true)}
-            className="bg-violet-600 text-white font-bold rounded-lg px-8 py-4">
+            className="bg-violet-600 text-white font-bold text-lg rounded-lg px-10 py-4">
             New Shipment
           </button>
         </div>
@@ -91,7 +91,7 @@ function Shipping() {
 
           </div>
         ) : (
-          <p>please login to view active shipments</p>
+          <p className="opacity-75 text-lg text-center mt-32">Please login to view your shipments</p>
         )}
 
       </div>
