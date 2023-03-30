@@ -6,7 +6,6 @@ interface ShipmentPutAdmin {
     destinationID: number;
     email: string | null;  
     price: number;
-    statusList: string[];
 }
 
 export default ShipmentPutAdmin;
