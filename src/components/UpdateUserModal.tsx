@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react"
 import user from '../user.json'
 import keycloak from "../keycloak";
+import { updateUserInformation } from "../api/users";
 
 
 
@@ -31,22 +32,10 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
   }, [])
 
 
-  const updateUserInformation = async () => {
-    const response = await fetch('https://localhost:7085/api/users/', {
-      method: 'PUT', // or 'POST' if you're creating a new user
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        dateOfBirth: dateOfBirth,
-        country: countryOfResidence,
-        zipCode: zipCode,
-        contactNumber: contactNumber,
-      })
-    });
+  const onSubmitHandler = async () => {
+    const response = await updateUserInformation({ dateOfBirth, countryOfResidence, zipCode, contactNumber });
 
-    if (response.ok) {
+    if (response) {
       closeModal();
     } else {
       // The server returned an error
@@ -105,7 +94,7 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
 
       <button
         className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded"
-        onClick={updateUserInformation}
+        onClick={onSubmitHandler}
       >
         Save
       </button>

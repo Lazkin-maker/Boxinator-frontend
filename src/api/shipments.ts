@@ -10,7 +10,7 @@ import Shipment from "../models/shipment";
  * Fetch all active shipments for the user
  */
 export const fetchActiveShipmentsUser = async () => {
-    const response = await fetch("https://localhost:7085/api/v1/shipment/current", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/shipment/current`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export const fetchActiveShipmentsUser = async () => {
  * Fetch all completed shipments for the user
  */
 export const fetchPreviousShipmentsUser = async () => {
-    const response = await fetch("https://localhost:7085/api/v1/shipment/previous", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/shipment/previous`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export const fetchPreviousShipmentsUser = async () => {
  * @param body Shipment details from form
  */
 export const createNewShipmentsUser = async (body: NewShipmentUser) => {
-    const response = await fetch("https://localhost:7085/api/v1/shipment/new", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/shipment/new`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export const createNewShipmentsUser = async (body: NewShipmentUser) => {
  * @param body Shipment details from form
  */
 export const createNewShipmentsGuest = async (body: NewShipmentGuest) => {
-    const response = await fetch("https://localhost:7085/api/v1/shipment/guest/new", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/shipment/guest/new`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -81,7 +81,7 @@ export const createNewShipmentsGuest = async (body: NewShipmentGuest) => {
  * Fetch all current shipments for the admin
  */
 export const fetchCurrentShipmentsAdmin = async () => {
-    const response = await fetch("https://localhost:7085/api/v1/admin/shipment/current", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/admin/shipment/current`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -99,7 +99,7 @@ export const fetchCurrentShipmentsAdmin = async () => {
  * @param shipmentId Id of the shipment to cancel
  */
 export const cancelShipment = async (shipmentId: number) => {
-    const response = await fetch(`https://localhost:7085/api/v1/shipment/${shipmentId}/cancel`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/shipment/${shipmentId}/cancel`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -116,7 +116,7 @@ export const cancelShipment = async (shipmentId: number) => {
  * Change the status of a shipment as admin
  */
 export const changeShipmentStatus = async (shipmentId: number, status: Status) => {
-    const response = await fetch(`https://localhost:7085/api/v1/admin/shipment/${shipmentId}/addstatus`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/admin/shipment/${shipmentId}/addstatus`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -131,7 +131,7 @@ export const changeShipmentStatus = async (shipmentId: number, status: Status) =
    * Fetch shipment by Id for the admin change status
   */
 export const fetchShipmentByIdsAdmin = async (shipmentId: number) => {
-    const response = await fetch(`https://localhost:7085/api/v1/admin/shipment/${shipmentId}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/admin/shipment/${shipmentId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -151,7 +151,7 @@ export const fetchShipmentByIdsAdmin = async (shipmentId: number) => {
  * @param shipmentId Id of the shipment to cancel
  */
 export const updateShipment = async (shipmentId: number, body : ShipmentPutAdmin) => {
-    const response = await fetch(`https://localhost:7085/api/v1/admin/shipment/${shipmentId}/update`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/admin/shipment/${shipmentId}/update`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

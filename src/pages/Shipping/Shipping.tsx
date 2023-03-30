@@ -6,6 +6,7 @@ import ShipmentList from "../../components/ShipmentList/ShipmentList";
 import Shipment from "../../models/shipment";
 import keycloak from "../../keycloak";
 import { useNavigate } from "react-router-dom";
+import { createNewUser } from "../../api/users";
 
 
 function Shipping() {
@@ -23,7 +24,7 @@ function Shipping() {
 
   useEffect(() => {
     if (!isAuthenticated) return;
-    createNewUser();
+    createNewUserHandler();
     getActiveShipments();
     getPreviousShipments();
   }, []);
@@ -38,14 +39,9 @@ function Shipping() {
     }
   }, [])
 
-  const createNewUser = async () => {
-    const response = await fetch("https://localhost:7085/api/users/newuser", {
-      method: "POST",
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        "Content-Type": "application/json"
-      }
-    })
+  const createNewUserHandler = async () => {
+    const response = await createNewUser();
+    return response;
   }
 
   const getActiveShipments = async () => {

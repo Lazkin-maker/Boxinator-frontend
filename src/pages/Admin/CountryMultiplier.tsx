@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { fetchCountries } from "../../api/countries";
+import { fetchCountries, updateCountryMultiplier } from "../../api/countries";
 import keycloak from "../../keycloak";
 import { Country } from "../../types/Country";
 
@@ -19,30 +19,24 @@ function CountryMultiplier() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const handleSaveChanges = () => {
+    const handleSaveChanges = async () => {
         // save changes to backend
-        const updateCountry = async () => {
-            await fetch(`https://localhost:7085/api/v1/countries/${currentCountry?.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + keycloak.token
-                },
-                body: JSON.stringify(currentCountry)
+        if (!currentCountry) return;
+
+        const response = await updateCountryMultiplier(currentCountry)
+
+        if (response.ok) {
+
+            const updatedCountryList = countryList.map(country => {
+                if (country.id == currentCountry?.id) {
+                    return currentCountry;
+                } else {
+                    return country;
+                }
             })
+
+            setCountryList(updatedCountryList);
         }
-
-        const updatedCountryList = countryList.map(country => {
-            if (country.id == currentCountry?.id) {
-                return currentCountry;
-            } else {
-                return country;
-            }
-        })
-
-        setCountryList(updatedCountryList);
-
-        updateCountry();
     }
 
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {

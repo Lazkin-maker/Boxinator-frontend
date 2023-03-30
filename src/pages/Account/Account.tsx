@@ -5,6 +5,7 @@ import UpdateUserModal from '../../components/UpdateUserModal';
 import ConfirmationModal from '../../components/UpdateConfirmation';
 import user from '../../user.json'
 import { json } from 'react-router-dom';
+import { fetchUserSub } from '../../api/users';
 // import { getUserData } from "your-api-utils";
 
 
@@ -39,36 +40,11 @@ function Account({ }: Props) {
 
   useEffect(() => {
     const api = async () => {
-      const data = await fetch(`https://localhost:7085/api/users/userssub`, {
-        method: "GET",
-        headers: {
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        }
-
-      });
-      const jsonData = await data.json();
-      setUserData(jsonData)
+      const userSub = await fetchUserSub();
+      setUserData(userSub)
     };
     api();
   }, [Sub]);
-
-
-  // useEffect(() => {
-  //   const api = async () => {
-  //     const data = await fetch(`https://localhost:7085/api/users/userssub/${encodeURIComponent( Sub)}`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       }
-
-  //     });
-  //     const jsonData = await data.json();
-  //     setUserData(jsonData)
-
-  //   };
-  //   api();
-  // }, [Sub]);
 
 
   return (
