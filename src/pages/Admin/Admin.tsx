@@ -46,7 +46,7 @@ const Admin = () => {
 
   return (
 
-    <div className='w-5/6 h-5/6'>
+    <div className='h-5/6'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex h-10">
           <input 

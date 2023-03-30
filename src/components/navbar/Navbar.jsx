@@ -27,29 +27,29 @@ function Navbar() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img src="/icon.svg" alt="Logo" className="h-12 w-12 rounded-full inline" />
-              <h1 className="text-white font-bold text-xl ml-2 mt-1 inline">Boxinator</h1>
+              <h1 className="text-white font-bold text-xl ml-2 mt-1 hidden sm:inline">Boxinator</h1>
             </Link>
           </div>
           <div className="flex">
             <ul className="flex items-center font-bold">
               {isAuthenticated && (
-                <li className="ml-8">
+                <li className="ml-2 sm:ml-8">
                   <Link to="/account" className="text-white hover:text-gray-300">Account</Link>
                 </li>
               )}
               {isAuthenticated && (
-                <li className="ml-8">
+                <li className="ml-2 sm:ml-8">
                   <Link to="/shipping" className="text-white hover:text-gray-300">Shipping</Link>
                 </li>
               )}
               {isAuthenticated && userRole && (
-                <li className="ml-8">
+                <li className="ml-2 sm:ml-8">
                   <Link to="/admin" className="text-white hover:text-gray-300">Admin</Link>
                 </li>
               )}
             </ul>
             {!isAuthenticated ? (
-              <ul className="flex items-center ml-8">
+              <ul className="flex items-center ml-2 sm:ml-8">
                 <li>
                   <button
                     onClick={() => keycloak.login({ redirectUri: window.location.origin + "/shipping" })}
@@ -66,7 +66,7 @@ function Navbar() {
                 </li>
               </ul>
             ) : (
-              <ul className="flex items-center ml-8">
+              <ul className="flex items-center ml-3 sm:ml-8">
                 <li>
                   <button onClick={handleLogout} className="bg-white text-gray-900 rounded-full py-2 px-4 hover:text-gray-300">Logout</button>
                 </li>

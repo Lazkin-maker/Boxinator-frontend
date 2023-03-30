@@ -17,10 +17,7 @@ function Shipping() {
   const [activeShipments, setActiveShipments] = useState<Shipment[]>([]);
   const [previousShipments, setPreviousShipments] = useState<Shipment[]>([]);
 
-
-
   const isAuthenticated = keycloak.authenticated;
-  const token = keycloak.token;
 
   useEffect(() => {
     if (!isAuthenticated) return;
@@ -64,10 +61,10 @@ function Shipping() {
         </div>
       )}
 
-      <div className="container max-w-4xl mx-auto px-4 pt-20">
+      <div className="container max-w-4xl mx-auto px-4 pt-16">
 
 
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-2xl mx-auto text-center mb-20">
           <h1 className="text-3xl font-bold mb-8">Unbox the Mystery with Boxinator:<br />Shipping Thrill Straight to Your Doorstep!</h1>
           <button
             onClick={() => setShowNewShipmentModal(true)}
@@ -87,7 +84,7 @@ function Shipping() {
 
           </div>
         ) : (
-          <p className="opacity-75 text-lg text-center mt-32">Please login to view your shipments</p>
+          <p className="opacity-75 text-lg text-center">Please login to view your shipments</p>
         )}
 
       </div>
