@@ -1,12 +1,9 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import EditSatus from '../../components/Admin/StatusEdit/EditStatus';
-import EditSatusMobil from '../../components/Admin/StatusEdit/EditStatusMobil';
 import EditConfirmationModal from '../../components/Admin/StatusEdit/EditConfirmationModal';
 import { fetchShipmentByIdsAdmin } from '../../api/shipments';
 import Shipment from '../../models/shipment';
-
-
 
 const EditShipmentStatus = () => {
   const { shipmentId } = useParams();
@@ -17,6 +14,7 @@ const EditShipmentStatus = () => {
     const shipmentObj = await fetchShipmentByIdsAdmin(Number(shipmentId));
     setShipments(shipmentObj)
   }
+
   useEffect(() => {
     if (shipmentId !== undefined) {
       getShipment()

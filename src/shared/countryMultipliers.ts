@@ -1,3 +1,7 @@
+/**
+ * Map to convert country name to multiplier.
+ * Can be used to calculate the price of a product in a specific country
+ */
 const countryMultipliers = new Map<string, number>([
     ['Sweden', 0],
     ['Norway', 0],

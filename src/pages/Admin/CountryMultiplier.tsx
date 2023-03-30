@@ -1,6 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { fetchCountries, updateCountryMultiplier } from "../../api/countries";
-import keycloak from "../../keycloak";
 import { Country } from "../../types/Country";
 
 function CountryMultiplier() {

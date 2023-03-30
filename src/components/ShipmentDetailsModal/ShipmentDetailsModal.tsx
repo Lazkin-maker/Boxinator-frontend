@@ -15,8 +15,6 @@ type Props = {
 }
 
 function ShipmentDetailsModal({ shipment, editShipmentStatus, closeModal }: Props) {
-    // const currentStatus = shipment?.statusList[shipment?.statusList.length - 1] as Status;
-    // const [isCancelled, setIsCancelled] = useState(currentStatus === Status.CANCELLED);
     const [showEditStatusModal, setShowEditStatusModal] = useState(false);
 
     const [currentStatus, setCurrentStatus] = useState<Status>(getCurrentStatus());

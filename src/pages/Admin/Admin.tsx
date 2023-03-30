@@ -7,10 +7,6 @@ import { fetchCurrentShipmentsAdmin } from "../../api/shipments";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
-
-
-
 const Admin = () => {
   const [currentShipments, setCurrentShipment] = useReactState<Shipment[]>([]);
   const [baseShipments, setBaseShipment] = useReactState<Shipment[]>([]);
@@ -22,7 +18,6 @@ const Admin = () => {
     }
   }, []);
 
-
   const getCurrentShipments = async () => {
     const shipments = await fetchCurrentShipmentsAdmin();
     const newestShipmentFirst = shipments.reverse();
@@ -30,14 +25,12 @@ const Admin = () => {
     setBaseShipment(newestShipmentFirst as Shipment[]);
   }
 
-
   const onSubmit = (id?: any) => {
     if (id.id.length !== 0) {
-      setCurrentShipment(baseShipments.filter(shipment => {
-        return shipment.id == id.id
-      }))
+      setCurrentShipment(baseShipments.filter(shipment => shipment.id == id.id));
+    } else {
+      setCurrentShipment(currentShipments);
     }
-    else { setCurrentShipment(currentShipments); }
   };
 
   const resetShipments = () => {
@@ -45,7 +38,6 @@ const Admin = () => {
   }
 
   return (
-
     <div className='h-5/6'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex h-10">

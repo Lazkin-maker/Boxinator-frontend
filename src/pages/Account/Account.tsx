@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 import UpdateUserModal from '../../components/UpdateUserModal';
 import ConfirmationModal from '../../components/UpdateConfirmation';
 import { fetchUserSub } from '../../api/users';
-// import { getUserData } from "your-api-utils";
-
-
-type Props = {}
 
 interface resultProps {
   id: number;
@@ -17,8 +13,7 @@ interface resultProps {
   contactNumber: string;
 }
 
-
-function Account({ }: Props) {
+function Account() {
   const [Data, setData] = useState<resultProps>();
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -105,11 +100,7 @@ function Account({ }: Props) {
       )}
 
     </div>
-
-
-
   );
-
 }
 
 export default Account
