@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react"
+import { useForm } from "react-hook-form";
 import user from '../user.json'
 import keycloak from "../keycloak";
 import { updateUserInformation } from "../api/users";
@@ -9,21 +10,32 @@ import { updateUserInformation } from "../api/users";
 
 
 type Props = {
+  Data: resultProps
   closeModal: () => void,
   setShowConfirmationModal: Dispatch<SetStateAction<boolean>>
 }
+interface resultProps {
+  dateOfBirth: string; // add this line
+  country: string;
+  zipCode: string;
+  contactNumber: string;
+}
 
-function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
-  const [userData, setUserData] = useState(user);
-  const [dateOfBirth, setDateOfBirth] = useState(userData.dateOfBirth);
-  const [countryOfResidence, setCountryOfResidence] = useState(userData.countryOfResidence);
-  const [zipCode, setZipCode] = useState(userData.zipCode);
-  const [contactNumber, setContactNumber] = useState(userData.contactNumber);
+
+function UpdateUserModal({ closeModal, setShowConfirmationModal, Data }: Props) {
   const [Sub, setSub] = useState("");
-
-
   const isAuthenticated = keycloak.authenticated;
   const token = keycloak.token;
+
+  const {register, handleSubmit} = useForm({
+    defaultValues: {
+      dateOfBirth: Data.dateOfBirth,
+      country: Data.country,
+      zipCode: Data.zipCode,
+      contactNumber: Data.contactNumber
+    }
+    
+  });
 
   useEffect(() =>{
     if(isAuthenticated){
@@ -32,14 +44,18 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
   }, [])
 
 
-  const onSubmitHandler = async () => {
-    const response = await updateUserInformation({ dateOfBirth, countryOfResidence, zipCode, contactNumber });
+
+  const onSubmitHandler = async (data: resultProps) => {
+    const response = await updateUserInformation({
+       dateOfBirth: data.dateOfBirth, 
+       countryOfResidence: data.country, 
+       zipCode: data.zipCode, 
+       contactNumber: data.contactNumber });
 
     if (response) {
       closeModal();
     } else {
-      // The server returned an error
-      // You can handle this event here, for example by showing an error message to the user
+     
     }
   };
 
@@ -48,22 +64,20 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
       <div className="mt-4">
         <p className="font-medium mb-1">Date of Birth:</p>
         <input
-          className="border border-gray-300 p-2 rounded-md w-full"
+          className="border border-gray-300 p-2 rounded-md w-full text-black"
           type="date"
-          value={dateOfBirth}
-          onChange={(e) => setDateOfBirth(e.target.value)}
-          style={{ color: 'black' }}
+          {...register('dateOfBirth')}
+        
         />
       </div>
 
       <div className="mt-4">
         <p className="font-medium mb-1">Country of Residence:</p>
         <input
-          className="border border-gray-300 p-2 rounded-md w-full"
+          className="border border-gray-300 p-2 rounded-md w-full text-black"
           type="text"
-          value={countryOfResidence}
-          onChange={(e) => setCountryOfResidence(e.target.value)}
-          style={{ color: 'black' }}
+          {...register('country')}
+         
 
         />
       </div>
@@ -71,11 +85,10 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
       <div className="mt-4">
         <p className="font-medium mb-1">Zip Code/Postal Code:</p>
         <input
-          className="border border-gray-300 p-2 rounded-md w-full"
+         className="border border-gray-300 p-2 rounded-md w-full text-black"
           type="text"
-          value={zipCode}
-          onChange={(e) => setZipCode(e.target.value)}
-          style={{ color: 'black' }}
+          {...register('zipCode')}
+          
 
         />
       </div>
@@ -83,18 +96,15 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal }: Props) {
       <div className="mt-4">
         <p className="font-medium mb-1">Contact Number:</p>
         <input
-          className="border border-gray-300 p-2 rounded-md w-full"
+          className="border border-gray-300 p-2 rounded-md w-full text-black"
           type="text"
-          value={contactNumber}
-          onChange={(e) => setContactNumber(e.target.value)}
-          style={{ color: 'black' }}
-
+          {...register('contactNumber')}
         />
       </div>
 
       <button
-        className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded"
-        onClick={onSubmitHandler}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={handleSubmit(onSubmitHandler)}
       >
         Save
       </button>
