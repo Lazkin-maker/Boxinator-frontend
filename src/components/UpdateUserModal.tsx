@@ -1,13 +1,6 @@
-import { Dispatch, SetStateAction, useState, useEffect } from "react"
+import { Dispatch, SetStateAction } from "react"
 import { useForm } from "react-hook-form";
-import user from '../user.json'
-import keycloak from "../keycloak";
 import { updateUserInformation } from "../api/users";
-
-
-
-
-
 
 type Props = {
   Data: resultProps
@@ -23,9 +16,6 @@ interface resultProps {
 
 
 function UpdateUserModal({ closeModal, setShowConfirmationModal, Data }: Props) {
-  const [Sub, setSub] = useState("");
-  const isAuthenticated = keycloak.authenticated;
-  const token = keycloak.token;
 
   const {register, handleSubmit} = useForm({
     defaultValues: {
@@ -34,16 +24,7 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal, Data }: Props) 
       zipCode: Data.zipCode,
       contactNumber: Data.contactNumber
     }
-    
   });
-
-  useEffect(() =>{
-    if(isAuthenticated){
-      setSub(keycloak.tokenParsed?.sub || "")
-    }
-  }, [])
-
-
 
   const onSubmitHandler = async (data: resultProps) => {
     const response = await updateUserInformation({
@@ -54,8 +35,6 @@ function UpdateUserModal({ closeModal, setShowConfirmationModal, Data }: Props) 
 
     if (response) {
       closeModal();
-    } else {
-     
     }
   };
 

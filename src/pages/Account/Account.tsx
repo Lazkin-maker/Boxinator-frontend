@@ -1,10 +1,7 @@
-import React from 'react'
 import keycloak from '../../keycloak'
 import { useEffect, useState } from "react";
 import UpdateUserModal from '../../components/UpdateUserModal';
 import ConfirmationModal from '../../components/UpdateConfirmation';
-import user from '../../user.json'
-import { json } from 'react-router-dom';
 import { fetchUserSub } from '../../api/users';
 // import { getUserData } from "your-api-utils";
 
@@ -27,14 +24,9 @@ function Account({ }: Props) {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [Sub, setSub] = useState("");
 
-  const isAuthenticated = keycloak.authenticated;
-  const token = keycloak.token;
-
   useEffect(() => {
-    if (isAuthenticated) {
-
+    if (keycloak.authenticated) {
       setSub(keycloak.tokenParsed?.sub || "")
-
     }
   }, [])
 
