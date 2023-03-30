@@ -32,7 +32,7 @@ function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/">
-              <img src="/deliveryPic.jpg" alt="Logo" className="h-12 w-12 rounded-full" />
+              <img src="/icon.svg" alt="Logo" className="h-12 w-12 rounded-full" />
             </Link>
             <div className="ml-3">
               <h1 className="text-white font-bold text-xl">Boxinator</h1>
